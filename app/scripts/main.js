@@ -1,4 +1,6 @@
 var characters = [{name:'sara', health:100}];
+var goodGuy;
+
 
 function reusableTemplate(templateId, container, model) {
     var templateFunction = _.template($('#' + templateId).text());
@@ -7,8 +9,8 @@ function reusableTemplate(templateId, container, model) {
 }
 
 _.each(characters, function(output){
-	reusableTemplate('characterList', '.dropdown', output);
-})
+	reusableTemplate('templates-character-list', '.dropdown', output);
+});
 
 function Character(characterSelection) {
   characterSelection = characterSelection || {};
@@ -22,7 +24,11 @@ $("#pickcharacter").on('submit', function(event){
 	var playerSelection = {name:$('.dropdown').val();
 	console.log(playerSelection);
 
-	var goodGuy = new Character (function (){
+	goodGuy = new Character (function (){
 
 	})
 })
+//put the good guy into the dom
+function showGoodGuy() {
+  reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
+}

@@ -9,3 +9,9 @@ function reusableTemplate(templateId, container, model) {
 _.each(characters, function(output){
 	reusableTemplate('characterList', '.dropdown', output);
 })
+
+function Character(characterSelection) {
+  characterSelection = characterSelection || {};
+  this.name = (characterSelection.name) ? characterSelection.name : 'No Name';
+  this.health = (characterSelection.health) ? characterSelection.health : 100;
+}

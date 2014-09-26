@@ -26,12 +26,16 @@ $("#pick-character").on('submit', function(event){
 	var goodGuyModel = _.each(characters, function(character){
 		playerSelection === character.name;
 	});
-	console.log(goodGuyModel);
+	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
-	console.log(goodGuy);
 	showGoodGuy();
+  stopShowingIt('#pick-character');
 })
 //put the good guy into the dom
 function showGoodGuy() {
   reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
+}
+
+function stopShowingIt(what) {
+  $(what).addClass('hidden');
 }

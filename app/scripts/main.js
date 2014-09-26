@@ -24,9 +24,8 @@ $("#pick-character").on('submit', function(event){
 	var playerSelection = $('.dropdown').val();
 
 	var goodGuyModel = _.each(characters, function(character){
-		if(playerSelection === character.name) {
-		}
-	})
+		playerSelection === character.name;
+	});
 	console.log(goodGuyModel);
 	goodGuy = new Character(goodGuyModel);
 	console.log(goodGuy);

@@ -20,5 +20,9 @@ function Character(characterSelection) {
 
 //put the good guy into the dom
 function showGoodGuy() {
+  $('#good-guy').append(""+goodGuy);
+  console.log(goodGuy);
 
 }
+
+showGoodGuy();

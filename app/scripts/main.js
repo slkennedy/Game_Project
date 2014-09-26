@@ -15,3 +15,14 @@ function Character(characterSelection) {
   this.name = (characterSelection.name) ? characterSelection.name : 'No Name';
   this.health = (characterSelection.health) ? characterSelection.health : 100;
 }
+
+//Reacts to form submission by creating a new instance of Character
+$("#pickcharacter").on('submit', function(event){
+	event.preventDefault();
+	var playerSelection = {name:$('.dropdown').val();
+	console.log(playerSelection);
+
+	var goodGuy = new Character (function (){
+
+	})
+})

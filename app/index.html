@@ -22,18 +22,21 @@
     <!-- endbuild -->
   </head>
   <body>
-    <form id="pickcharacter" method="post">
+    <form id="pick-character" method="post">
         <h1>Pick Your Character:</h1>
         <select class="dropdown"></select>
         <input type="submit" value="I like this one!" id="button"/>
     </form>
 
+    <div class="show-character" id="good-guy">
+    </div>
+
     <script type="text/template" id="characterList">
-        <option value= "<%= name %> <%= health %>">"Name: " + "<%= name %>"
-         + " " + "Health: " + "<%= health %>" 
+        <option value= "<%= name %> <%= health %>">Name: <%= name %>,
+         Health: <%= health %>
         </option>
     </script>
-    
+
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -44,7 +47,7 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
-        
+
         <!-- endbuild -->
 </body>
 </html>

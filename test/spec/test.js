@@ -54,6 +54,16 @@ describe('Character Testing', function() {
 		});
 	});
 
+  describe('Instance Tests of specific character types', function() {
+
+    it('should have an evil bad guy and a not evil good guy', function() {
+      
+
+      expect(goodGuy.evil).to.be.ok;
+      expect(badGuy.evil).to.not.be.ok;
+    });
+  });
+
 	describe('Attack Function Testing', function (){
 		it('should have an attack function', function(){
 			expect().to.be('');

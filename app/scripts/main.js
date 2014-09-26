@@ -23,7 +23,8 @@ function Character(characterSelection) {
 $("#pick-character").on('submit', function(event){
 	event.preventDefault();
 	assignCharacters();
-  	stopShowingIt('#pick-character');
+  stopShowingIt('#pick-character');
+  showGoodGuy();
 })
 //put the good guy into the dom
 function showGoodGuy() {
@@ -46,12 +47,11 @@ function assignCharacters(){
 	});
 	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
-	showGoodGuy();
 
 	var badGuyModel = _.each(characters, function(character){
 		character.evil;
 	});
-	
+
 	badGuyModel = badGuyModel[0];
 	badGuy = new Character (badGuyModel);
 }

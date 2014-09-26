@@ -13,9 +13,9 @@ _.each(characters, function(output){
 });
 
 function Character(characterSelection) {
-  characterSelection = characterSelection || {};
-  this.name = (characterSelection.name) ? characterSelection.name : 'No Name';
-  this.health = (characterSelection.health) ? characterSelection.health : 100;
+  characterModel = characterSelection || {};
+  this.name = (characterModel.name) ? characterModel.name : 'No Name';
+  this.health = (characterModel.health) ? characterModel.health : 100;
 }
 
 //put the good guy into the dom

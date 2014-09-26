@@ -47,8 +47,10 @@ describe('Character Testing', function() {
 			expect(this.goodGuy.health).to.be.ok;
 		});
 
-		it('should have a type property', function () {
-			expect().to.be('');
+		it('should have an evil property', function () {
+
+			expect(this.goodGuy.evil).to.be.ok;
+      expect(this.goodGuy.evil).to.be(false);
 		});
 	});
 

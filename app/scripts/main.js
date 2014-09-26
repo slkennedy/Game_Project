@@ -9,7 +9,7 @@ function reusableTemplate(templateId, container, model) {
 }
 
 _.each(characters, function(output){
-	reusableTemplate('characterList', '.dropdown', output);
+	reusableTemplate('templates-character-list', '.dropdown', output);
 })
 
 function Character(characterSelection) {
@@ -20,8 +20,7 @@ function Character(characterSelection) {
 
 //put the good guy into the dom
 function showGoodGuy() {
-  $('#good-guy').append(""+goodGuy);
-  console.log(goodGuy);
+  reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
 
 }
 

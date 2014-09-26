@@ -19,14 +19,18 @@ function Character(characterSelection) {
 }
 
 //Reacts to form submission by creating a new instance of Character
-$("#pickcharacter").on('submit', function(event){
+$("#pick-character").on('submit', function(event){
 	event.preventDefault();
-	var playerSelection = {name:$('.dropdown').val();
-	console.log(playerSelection);
+	var playerSelection = $('.dropdown').val();
 
-	goodGuy = new Character (function (){
-
+	var goodGuyModel = _.each(characters, function(character){
+		if(playerSelection === character.name) {
+		}
 	})
+	console.log(goodGuyModel);
+	goodGuy = new Character(goodGuyModel);
+	console.log(goodGuy);
+	showGoodGuy();
 })
 //put the good guy into the dom
 function showGoodGuy() {

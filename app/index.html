@@ -30,6 +30,8 @@
 
     <div class="show-character" id="good-guy">
     </div>
+    <div class="show-character" id="bad-guy">
+    </div>
 
     <script type="text/template" id="templates-character-list">
         <option value= "<%= name %>">Name: <%= name %>,
@@ -42,6 +44,10 @@
       <span>Health: <%= health %></span>
     </script>
 
+    <script type="text/template" id="templates-bad-guy">
+      <h1><%= name %></h1>
+      <span>Health: <%= health %></span>
+    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->

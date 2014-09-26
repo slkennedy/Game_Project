@@ -31,9 +31,9 @@ function showGoodGuy() {
   reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
 }
 
-// function showBadGuy() {
-//   reusableTemplate()
-// }
+function showBadGuy() {
+  reusableTemplate('templates-bad-guy', '#bad-guy', badGuy)
+}
 
 function stopShowingIt(what) {
   $(what).addClass('hidden');

@@ -1,5 +1,5 @@
 var characters = [{name:'sara', health:100}];
-var goodGuy = character[0];
+var goodGuy = characters[0];
 
 
 function reusableTemplate(templateId, container, model) {
@@ -20,5 +20,5 @@ function Character(characterSelection) {
 
 //put the good guy into the dom
 function showGoodGuy() {
-  
+
 }

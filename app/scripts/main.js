@@ -1,5 +1,5 @@
 var characters = [{name:'sara', health:100}];
-var goodGuy = characters[0];
+var goodGuy;
 
 
 function reusableTemplate(templateId, container, model) {
@@ -10,7 +10,7 @@ function reusableTemplate(templateId, container, model) {
 
 _.each(characters, function(output){
 	reusableTemplate('templates-character-list', '.dropdown', output);
-})
+});
 
 function Character(characterSelection) {
   characterSelection = characterSelection || {};
@@ -21,7 +21,4 @@ function Character(characterSelection) {
 //put the good guy into the dom
 function showGoodGuy() {
   reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
-
 }
-
-showGoodGuy();

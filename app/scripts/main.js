@@ -1,4 +1,4 @@
-var characters = [{name:'sara', health:100}];
+var characters = [{name:'sara', health:100, evil:false}, {name:'ollie-berry', health:100, evil:true}];
 var goodGuy;
 var badGuy;
 
@@ -22,6 +22,23 @@ function Character(characterSelection) {
 //Reacts to form submission by creating a new instance of Character
 $("#pick-character").on('submit', function(event){
 	event.preventDefault();
+	assignCharacters();
+  	stopShowingIt('#pick-character');
+})
+//put the good guy into the dom
+function showGoodGuy() {
+  reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
+}
+
+// function showBadGuy() {
+//   reusableTemplate()
+// }
+
+function stopShowingIt(what) {
+  $(what).addClass('hidden');
+}
+
+function assignCharacters(){
 	var playerSelection = $('.dropdown').val();
 
 	var goodGuyModel = _.each(characters, function(character){
@@ -32,17 +49,9 @@ $("#pick-character").on('submit', function(event){
 	showGoodGuy();
 
 	var badGuyModel = _.each(characters, function(character){
-		character.type === 'bad';
-	})
+		character.evil;
+	});
 	
+	badGuyModel = badGuyModel[0];
 	badGuy = new Character (badGuyModel);
-  stopShowingIt('#pick-character');
-})
-//put the good guy into the dom
-function showGoodGuy() {
-  reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
-}
-
-function stopShowingIt(what) {
-  $(what).addClass('hidden');
 }

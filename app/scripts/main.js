@@ -28,11 +28,11 @@ $("#pick-character").on('submit', function(event){
 })
 //put the good guy into the dom
 function showGoodGuy() {
-  reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
+  reusableTemplate('templates-display-character', '#good-guy', goodGuy);
 }
 
 function showBadGuy() {
-  reusableTemplate('templates-bad-guy', '#bad-guy', badGuy)
+  reusableTemplate('templates-display-character', '#bad-guy', badGuy)
 }
 
 function stopShowingIt(what) {

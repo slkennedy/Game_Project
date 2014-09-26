@@ -13,9 +13,9 @@ _.each(characters, function(output){
 });
 
 function Character(characterSelection) {
-  characterSelection = characterSelection || {};
-  this.name = (characterSelection.name) ? characterSelection.name : 'No Name';
-  this.health = (characterSelection.health) ? characterSelection.health : 100;
+  characterModel = characterSelection || {};
+  this.name = (characterModel.name) ? characterModel.name : 'No Name';
+  this.health = (characterModel.health) ? characterModel.health : 100;
 }
 
 //Reacts to form submission by creating a new instance of Character
@@ -26,12 +26,16 @@ $("#pick-character").on('submit', function(event){
 	var goodGuyModel = _.each(characters, function(character){
 		playerSelection === character.name;
 	});
-	console.log(goodGuyModel);
+	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
-	console.log(goodGuy);
 	showGoodGuy();
+  stopShowingIt('#pick-character');
 })
 //put the good guy into the dom
 function showGoodGuy() {
   reusableTemplate('templates-good-guy', '#good-guy', goodGuy);
+}
+
+function stopShowingIt(what) {
+  $(what).addClass('hidden');
 }

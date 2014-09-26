@@ -22,7 +22,17 @@
     <!-- endbuild -->
   </head>
   <body>
+    <form id="pickcharacter" method="post">
+        <h1>Pick Your Character:</h1>
+        <select class="dropdown"></select>
+        <input type="submit" value="I like this one!" id="button"/>
+    </form>
 
+    <script type="text/template" id="characterList">
+        <option value= "<%= name %> <%= health %>">"Name: " + "<%= name %>"
+         + " " + "Health: " + "<%= health %>" 
+        </option>
+    </script>
     
 
     <!-- build:js scripts/vendor.js -->

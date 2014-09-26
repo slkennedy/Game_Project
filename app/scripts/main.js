@@ -18,6 +18,19 @@ function Character(characterSelection) {
   this.health = (characterModel.health) ? characterModel.health : 100;
 }
 
+//Reacts to form submission by creating a new instance of Character
+$("#pick-character").on('submit', function(event){
+	event.preventDefault();
+	var playerSelection = $('.dropdown').val();
+
+	var goodGuyModel = _.each(characters, function(character){
+		playerSelection === character.name;
+	});
+	console.log(goodGuyModel);
+	goodGuy = new Character(goodGuyModel);
+	console.log(goodGuy);
+	showGoodGuy();
+})
 //put the good guy into the dom
 function showGoodGuy() {
   reusableTemplate('templates-good-guy', '#good-guy', goodGuy);

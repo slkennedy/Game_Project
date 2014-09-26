@@ -1,5 +1,6 @@
 var characters = [{name:'sara', health:100}];
 var goodGuy;
+var badGuy;
 
 
 function reusableTemplate(templateId, container, model) {
@@ -30,6 +31,12 @@ $("#pick-character").on('submit', function(event){
 	goodGuy = new Character(goodGuyModel);
 	console.log(goodGuy);
 	showGoodGuy();
+
+	var badGuyModel = _.each(characters, function(character){
+		character.type === 'bad';
+	})
+	
+	badGuy = new Character (badGuyModel);
 })
 //put the good guy into the dom
 function showGoodGuy() {

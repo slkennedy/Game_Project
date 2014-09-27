@@ -14,7 +14,7 @@ describe('List Testing', function () {
 	});
 
 	it('should have name and health properties for each object', function () {
-		expect(characters[0]).to.have.keys(['name','health']);
+		expect(characters[0]).to.contain.keys(['name','health']);
 
 	});
 });
@@ -49,18 +49,24 @@ describe('Character Testing', function() {
 
 		it('should have an evil property', function () {
 
-			expect(this.goodGuy.evil).to.be.ok;
-      expect(this.goodGuy.evil).to.be(false);
+			expect(this.goodGuy.evil).to.exist;
 		});
 	});
 
   describe('Instance Tests of specific character types', function() {
 
-    it('should have an evil bad guy and a not evil good guy', function() {
-      
+    it('should have an evil bad guy', function() {
 
-      expect(goodGuy.evil).to.be.ok;
-      expect(badGuy.evil).to.not.be.ok;
+      var badGuy = new Character(characters[1]);
+
+      expect(badGuy.evil).to.not.be.false;
+    });
+
+    it('should have a not evil good guy', function() {
+
+      var goodGuy = new Character(characters[0]);
+      expect(goodGuy.evil).to.be.true;
+
     });
   });
 

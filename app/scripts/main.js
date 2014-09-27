@@ -32,6 +32,11 @@ function Character(characterSelection) {
 
 //Attack Prototype
 Character.prototype.attack = function(attacked){
+	attacker = this.name;
+	setTimeout(function(){
+	  	attackAlert(attacker, attacked.name);
+	  }, 500);
+
   attacked.health = attacked.health - _.random(1, 10);
 
   if (attacked.health <= 0) {
@@ -42,6 +47,14 @@ Character.prototype.attack = function(attacked){
 	  $('#health-number-'+attacked.name).append(attacked.health);
 	}
 }
+
+//"Someone's being attacked", message
+function attackAlert(attacker, attacked) {
+  $('.messages').removeClass('hidden');
+  $('.messages').text(attacker+" is attacking "+attacked);
+  setTimeout(function(){stopShowingIt('.messages')}, 1000);
+};
+
 
 //create an extension of characters that makes a super evil badguy
 function SuperBadGuy(characterSelection) {
@@ -100,29 +113,18 @@ $('.attack').on('click', function(e) {
   e.preventDefault();
   stopShowingIt('.attack');
   goodGuy.attack(badGuy);
-  attackAlert();
   setTimeout(function(){
   	badGuy.attack(goodGuy);
+  }, 1000);
+  setTimeout(function(){
   	startShowingIt('.attack');
-  }, 1050);
+  }, 2000);
 });
 
 function gameover(name) {
   stopShowingIt('.show-character');
   startShowingIt('.messages');
   $('.messages').text('game-over');
-}
-
-var messageArray = [
-"You're about to be attacked",
-"Watch Out, here they come!",
-"Oh No, you've been hit!",
-"Take Cover!"]
-
-function attackAlert() {
-  startShowingIt('.messages');
-  $('.messages').text(_.sample(messageArray));
-  setTimeout(function(){stopShowingIt('.messages')}, 1000);
 }
 
 

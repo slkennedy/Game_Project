@@ -17,23 +17,25 @@ function Character(characterSelection) {
   characterModel = characterSelection || {};
   this.name = (characterModel.name) ? characterModel.name : 'No Name';
   this.health = (characterModel.health) ? characterModel.health : 100;
+  this.evil = (characterModel.evil) ? characterModel.evil : true;
 }
 
 //Reacts to form submission by creating a new instance of Character
 $("#pick-character").on('submit', function(event){
 	event.preventDefault();
 	assignCharacters();
-  stopShowingIt('#pick-character');
   showGoodGuy();
-})
+  stopShowingIt('#pick-character');
+});
+
 //put the good guy into the dom
 function showGoodGuy() {
   reusableTemplate('templates-display-character', '#good-guy', goodGuy);
 }
 
-function showBadGuy() {
-  reusableTemplate('templates-display-character', '#bad-guy', badGuy)
-}
+// function showBadGuy() {
+//   reusableTemplate()
+// }
 
 function stopShowingIt(what) {
   $(what).addClass('hidden');

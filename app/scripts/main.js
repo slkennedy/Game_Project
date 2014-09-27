@@ -14,7 +14,7 @@ function reusableTemplate(templateId, container, model) {
     $(container).append(renderedTemplate);
 }
 
-_.each(characters, function(output){
+_.each(goodCharacters, function(output){
 	reusableTemplate('templates-character-list', '.dropdown', output);
 });
 
@@ -48,11 +48,9 @@ function stopShowingIt(what) {
 
 function assignCharacters(){
 	var playerSelection = $('.dropdown :selected').val();
-  console.log(playerSelection);
 	var goodGuyModel = _.filter(characters, function(character){
 		return playerSelection === character.name;
 	});
-  console.log(goodGuyModel);
 	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
 

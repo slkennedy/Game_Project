@@ -30,13 +30,21 @@ Character.prototype.attack = function(attacked){
   attacked.health = attacked.health - _.random(1, 10);
 
   if (attacked.health <= 0) {
-	  gameover();
-  } 
+	  gameover(attacked.name);
+  }
   else {
 	  $('#health-number-'+attacked.name).empty();
 	  $('#health-number-'+attacked.name).append(attacked.health);
 	}
 }
+
+//create an extension of characters that makes a super evil badguy
+function SuperBadGuy(characterSelection) {
+  Character.apply(this, arguments);
+  this.health = 500;
+}
+
+SuperBadGuy.prototype = Object.create(Character.prototype);
 
 //Reacts to form submission by creating a new instance of Character
 $("#pick-character").on('submit', function(event){
@@ -70,7 +78,13 @@ function assignCharacters(){
 	goodGuy = new Character(goodGuyModel);
 
   var badGuyModel = _.sample(badCharacters) //random badguy;
-	badGuy = new Character (badGuyModel);
+  var badGuyType = _.random(1);
+  if (badGuyType === 0) {
+      badGuy = new SuperBadGuy(badGuyModel);
+  }
+  else {
+	    badGuy = new Character(badGuyModel);
+  }
 }
 
 $('.attack').on('click', function(e) {

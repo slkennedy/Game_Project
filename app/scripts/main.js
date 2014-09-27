@@ -78,3 +78,18 @@ $('.attack').on('click', function(e) {
   goodGuy.attack(badGuy);
   badGuy.attack(goodGuy);
 });
+
+function gameover() {
+  $('.show-character').addClass('hidden');
+  $('.messages').removeClass('hidden');
+  $('.messages').text('game-over');
+}
+
+
+
+
+
+
+
+
+//

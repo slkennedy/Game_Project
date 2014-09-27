@@ -47,11 +47,12 @@ function stopShowingIt(what) {
 }
 
 function assignCharacters(){
-	var playerSelection = $('.dropdown').val();
-
-	var goodGuyModel = _.each(characters, function(character){
-		playerSelection === character.name;
+	var playerSelection = $('.dropdown :selected').val();
+  console.log(playerSelection);
+	var goodGuyModel = _.filter(characters, function(character){
+		return playerSelection === character.name;
 	});
+  console.log(goodGuyModel);
 	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
 

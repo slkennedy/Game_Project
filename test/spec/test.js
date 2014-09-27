@@ -68,7 +68,18 @@ describe('Character Testing', function() {
       expect(goodGuy.evil).to.be.true;
 
     });
+    describe('SuperBadGuy', function() {
+
+      it('should have a health of 500', function() {
+
+        badGuy = new SuperBadGuy(badCharacters[0]);
+
+        expect(badGuy.health).to.equal(500);
+
+      });
+    });
   });
+
 
 	describe('Attack Function Testing', function (){
 		it('should have an attack function', function(){
@@ -85,7 +96,7 @@ describe('Character Testing', function() {
 		});
 
 		it('should decrease the health level of the attacked', function (){
-			
+
 			badGuy = new Character(badCharacters[0]);
 
 
@@ -97,13 +108,7 @@ describe('Character Testing', function() {
 
 		});
 
-		it('should not let the health level go below 0', function (){
-			expect().to.be('');
-		});
 
-		it('should be triggered to respond when health is 0', function(){
-			expect().to.be('');
-		});
 	});
 });
 

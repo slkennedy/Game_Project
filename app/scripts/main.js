@@ -1,4 +1,9 @@
-var characters = [{name:'sara', health:100, evil:false}, {name:'ollie-berry', health:100, evil:true}];
+var characters = [
+	{name:'sara', health:20, evil:false}, 
+	{name:'jess', health:20, evil:false}, 
+	{name:'ollie-berry', health:20, evil:true}, 
+	{name:'Jake-y-Poo', health:20, evil:true}
+];
 var goodCharacters = _.filter(characters, function(character) {
   return character.evil === false;
 });
@@ -69,6 +74,10 @@ function stopShowingIt(what) {
   $(what).addClass('hidden');
 }
 
+function startShowingIt(what) {
+  $(what).removeClass('hidden');
+}
+
 function assignCharacters(){
 	var playerSelection = $('.dropdown :selected').val();
 	var goodGuyModel = _.filter(characters, function(character){
@@ -89,8 +98,13 @@ function assignCharacters(){
 
 $('.attack').on('click', function(e) {
   e.preventDefault();
+  stopShowingIt('.attack');
   goodGuy.attack(badGuy);
-  badGuy.attack(goodGuy);
+  attackAlert();
+  setTimeout(function(){
+  	badGuy.attack(goodGuy);
+  	startShowingIt('.attack');
+  }, 1050);
 });
 
 function gameover() {
@@ -99,6 +113,17 @@ function gameover() {
   $('.messages').text('game-over');
 }
 
+var messageArray = [
+"You're about to be attacked",
+"Watch Out, here they come!",
+"Oh No, you've been hit!",
+"Take Cover!"]
+
+function attackAlert() {
+  $('.messages').removeClass('hidden');
+  $('.messages').text(_.sample(messageArray));
+  setTimeout(function(){stopShowingIt('.messages')}, 1000);
+}
 
 
 

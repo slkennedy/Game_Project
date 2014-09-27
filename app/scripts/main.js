@@ -1,7 +1,7 @@
 var characters = [
-	{name:'sara', health:20, evil:false}, 
-	{name:'jess', health:20, evil:false}, 
-	{name:'ollie-berry', health:20, evil:true}, 
+	{name:'sara', health:20, evil:false},
+	{name:'jess', health:20, evil:false},
+	{name:'ollie-berry', health:20, evil:true},
 	{name:'Jake-y-Poo', health:20, evil:true}
 ];
 var goodCharacters = _.filter(characters, function(character) {
@@ -71,7 +71,7 @@ $("#pick-character").on('submit', function(event){
   showGoodGuy();
   stopShowingIt('#pick-character');
   showBadGuy();
-  $('.attack').removeClass('hidden');
+  startShowingIt('.attack');
 });
 
 //put the good guy into the dom
@@ -121,12 +121,11 @@ $('.attack').on('click', function(e) {
   }, 2000);
 });
 
-function gameover() {
-  $('.show-character').addClass('hidden');
-  $('.gameover').removeClass('hidden');
-  $('.gameover').text('game-over');
+function gameover(name) {
+  stopShowingIt('.show-character');
+  startShowingIt('.messages');
+  $('.messages').text('game-over');
 }
-
 
 
 

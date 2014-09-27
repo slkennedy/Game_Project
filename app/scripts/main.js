@@ -1,7 +1,12 @@
 var characters = [{name:'sara', health:100, evil:false}, {name:'ollie-berry', health:100, evil:true}];
 var goodGuy;
 var badGuy;
-
+var goodCharacters = _.filter(characters, function(character) {
+  return character.evil === false;
+});
+var badCharacters = _.filter(characters, function(character) {
+  return character.evil === true;
+});
 
 function reusableTemplate(templateId, container, model) {
     var templateFunction = _.template($('#' + templateId).text());

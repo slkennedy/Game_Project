@@ -32,6 +32,7 @@ $("#pick-character").on('submit', function(event){
   showGoodGuy();
   stopShowingIt('#pick-character');
   showBadGuy();
+  $('.attack').removeClass('hidden');
 });
 
 //put the good guy into the dom
@@ -56,7 +57,12 @@ function assignCharacters(){
 	goodGuy = new Character(goodGuyModel);
 
   var badGuyModel = _.sample(badCharacters) //random badguy;
-	// badGuyModel = badGuyModel[0];
 	badGuy = new Character (badGuyModel);
 
 }
+
+$('.attack').on('click', function(e) {
+  e.preventDefault();
+  goodGuy.attack(badGuy);
+  badGuy.attack(goodGuy);
+});

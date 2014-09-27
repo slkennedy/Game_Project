@@ -1,12 +1,12 @@
 var characters = [{name:'sara', health:100, evil:false}, {name:'ollie-berry', health:100, evil:true}];
-var goodGuy;
-var badGuy;
 var goodCharacters = _.filter(characters, function(character) {
   return character.evil === false;
 });
 var badCharacters = _.filter(characters, function(character) {
   return character.evil === true;
 });
+var goodGuy;
+var badGuy;
 
 function reusableTemplate(templateId, container, model) {
     var templateFunction = _.template($('#' + templateId).text());
@@ -31,6 +31,7 @@ $("#pick-character").on('submit', function(event){
 	assignCharacters();
   showGoodGuy();
   stopShowingIt('#pick-character');
+  showBadGuy();
 });
 
 //put the good guy into the dom
@@ -54,10 +55,8 @@ function assignCharacters(){
 	goodGuyModel = goodGuyModel[0];
 	goodGuy = new Character(goodGuyModel);
 
-	var badGuyModel = _.each(characters, function(character){
-		character.evil;
-	});
-
-	badGuyModel = badGuyModel[0];
+  var badGuyModel = _.sample(badCharacters) //random badguy;
+	// badGuyModel = badGuyModel[0];
 	badGuy = new Character (badGuyModel);
+
 }

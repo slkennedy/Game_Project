@@ -72,11 +72,29 @@ describe('Character Testing', function() {
 
 	describe('Attack Function Testing', function (){
 		it('should have an attack function', function(){
-			expect().to.be('');
+
+			beforeEach(function() {
+		      this.goodGuy = new Character(goodCharacters[0]);
+		    });
+
+		      badGuy = new Character(badCharacters[0]);
+
+
+			expect(this.goodGuy.attack).to.be.ok;
+			expect(badGuy.attack).to.be.ok;
 		});
 
-		it('should decrease the health level of the targe', function (){
-			expect().to.be('');
+		it('should decrease the health level of the attacked', function (){
+			
+			badGuy = new Character(badCharacters[0]);
+
+
+			expect(this.goodGuy.health).to.equal(100);
+
+			badGuy.attack(this.goodGuy);
+
+			expect(this.goodGuy.health).to.be.below(100);
+
 		});
 
 		it('should not let the health level go below 0', function (){

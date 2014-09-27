@@ -25,6 +25,13 @@ function Character(characterSelection) {
   this.evil = (characterModel.evil) ? characterModel.evil : true;
 }
 
+//Attack Prototype
+Character.prototype.attack = function(attacked){
+  attacked.health = attacked.health - _.random(1, 10);
+  $('#health-number-'+attacked.name).empty();
+  $('#health-number-'+attacked.name).append(attacked.health);
+}
+
 //Reacts to form submission by creating a new instance of Character
 $("#pick-character").on('submit', function(event){
 	event.preventDefault();
@@ -58,7 +65,6 @@ function assignCharacters(){
 
   var badGuyModel = _.sample(badCharacters) //random badguy;
 	badGuy = new Character (badGuyModel);
-
 }
 
 $('.attack').on('click', function(e) {

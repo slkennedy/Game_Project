@@ -33,27 +33,41 @@ function Character(characterSelection) {
 //Attack Prototype
 Character.prototype.attack = function(attacked){
 	attacker = this.name;
-	setTimeout(function(){
-	  	attackAlert(attacker, attacked.name);
-	  }, 500);
-
   attacked.health = attacked.health - _.random(1, 10);
 
-  if (attacked.health <= 0) {
-	  gameover(attacked.name);
+};
+
+function updateLifeStatus(character) {
+    $('#health-number-'+character.name).empty();
+    $('#health-number-'+character.name).append(character.health);
+}
+
+$('.attack').on('click', function(e) {
+  e.preventDefault();
+  goodGuy.attack(badGuy);
+  if (badGuy.health > 0) {
+    updateLifeStatus(badGuy);
+    badGuy.attack(goodGuy);
+      if (goodGuy.health > 0) {
+        updateLifeStatus(goodGuy);
+      }
+      else {
+        gameover();
+      }
   }
   else {
-	  $('#health-number-'+attacked.name).empty();
-	  $('#health-number-'+attacked.name).append(attacked.health);
-	}
-}
+    gameover();
+  }
+});
 
 //"Someone's being attacked", message
 function attackAlert(attacker, attacked) {
-  $('.messages').removeClass('hidden');
+  startShowingIt('.messages');
   $('.messages').text(attacker+" is attacking "+attacked);
-  setTimeout(function(){stopShowingIt('.messages')}, 1000);
-};
+  setTimeout(function() {
+      stopShowingIt('.messages');
+      }, 1000);
+}
 
 
 //create an extension of characters that makes a super evil badguy
@@ -109,17 +123,7 @@ function assignCharacters(){
   }
 }
 
-$('.attack').on('click', function(e) {
-  e.preventDefault();
-  stopShowingIt('.attack');
-  goodGuy.attack(badGuy);
-  setTimeout(function(){
-  	badGuy.attack(goodGuy);
-  }, 1000);
-  setTimeout(function(){
-  	startShowingIt('.attack');
-  }, 2000);
-});
+
 
 function gameover(name) {
   stopShowingIt('.show-character');
@@ -127,9 +131,82 @@ function gameover(name) {
   $('.messages').text('game-over');
 }
 
+//
+//
 
 
 
+// our confusing attempt at understanding deferred
+// function event() {
+//   var defer = new $.Deferred();
+//
+//   // Pending when bad guy is still alive
+//   if (badGuy.health > 0) {
+//     defer.notify( function() {
+//       goodGuy.attack(badGuy);
+//     });
+//   }
+//
+//   // Reject when bad guy is dead
+//   else {
+//     defer.reject( function() {
+//       gameover();
+//     });
+//   });
+//
+// // while the defer is pending do this stuff:
+// setTimeout(function working() {
+//   if ( dfd.state() === "pending" ) {
+//     defer.notify( "working... " );
+//     setInterval( working, 500 );
+//   }
+// }, 1 );
+//
+//   // Return the Promise so caller can't change the Deferred
+//   return defer.promise();
+// }
+//
+// // Attach resolve, fail, and progress handlers for event
+// $.when( event() ).then(
+//   function(){
+//     updateLifeStatus(badGuy);
+//   },
+//   function() {
+//     gameover();
+//   },
+//   function() {
+//     goodGuy.attack(badGuy);
+//   }
+// );
+
+
+
+// This version of clicking attack button is our first attempt at having time offset stuff
+// $('.attack').on('click', function(e) {
+//   e.preventDefault();
+//   stopShowingIt('.attack');
+//   setTimeout(function() {
+//     attackAlert(goodGuy.name, badGuy.name);
+//     setTimeout(function() {
+//       goodGuy.attack(badGuy);
+//       updateLifeStatus(badGuy);
+//     }, 500);
+//   }, 500)
+//   .done(function() {
+//     if (badGuy.health > 0) {
+//       setTimeout(function() {
+//         attackAlert(badGuy.name, goodGuy.name);
+//         setTimeout(function() {
+//           badGuy.attack(goodGuy);
+//           updateLifeStatus(goodGuy);
+//         }, 500);
+//       }, 500)
+//       .done(function() {
+//         startShowingIt('.attack');
+//       });
+//     }
+//   });
+// });
 
 
 

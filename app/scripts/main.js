@@ -28,8 +28,14 @@ function Character(characterSelection) {
 //Attack Prototype
 Character.prototype.attack = function(attacked){
   attacked.health = attacked.health - _.random(1, 10);
-  $('#health-number-'+attacked.name).empty();
-  $('#health-number-'+attacked.name).append(attacked.health);
+
+  if (attacked.health <= 0) {
+	  gameover();
+  } 
+  else {
+	  $('#health-number-'+attacked.name).empty();
+	  $('#health-number-'+attacked.name).append(attacked.health);
+	}
 }
 
 //Reacts to form submission by creating a new instance of Character

@@ -48,20 +48,36 @@ var activePlayers = [];
   //Reacts to click of the attack button
   $('.attack').on('click', function(e) {
       e.preventDefault();
-      goodGuy.attack(badGuy);
-      if (badGuy.health > 0) {
-          updateLifeStatus(badGuy);
-          badGuy.attack(goodGuy);
-          if (goodGuy.health > 0) {
-              updateLifeStatus(goodGuy);
+      stopShowingIt('.attack');
+      setTimeout(function() {
+        attackAlert(goodGuy.name, badGuy.name);
+        setTimeout(function() {
+          goodGuy.attack(badGuy);
+          if (badGuy.health > 0) {
+              updateLifeStatus(badGuy);
+              stopShowingIt('.messages');
+              setTimeout(function() {
+                attackAlert(badGuy.name, goodGuy.name);
+                setTimeout(function() {
+                  badGuy.attack(goodGuy);
+                  if (goodGuy.health > 0) {
+                      updateLifeStatus(goodGuy);
+                      stopShowingIt('.messages');
+                      setTimeout(function() {
+                        startShowingIt('.attack');
+                      }, 500);
+                  } else {
+                      goodGuy.alive = false;
+                      gameover();
+                  }
+                }, 500);
+              }, 500);
           } else {
-              goodGuy.alive = false;
+              badGuy.alive = false;
               gameover();
           }
-      } else {
-          badGuy.alive = false;
-          gameover();
-      }
+        }, 500);
+      }, 500);
   });
 
 //=============================================================================
@@ -115,9 +131,6 @@ function updateLifeStatus(character) {
 function attackAlert(attacker, attacked) {
     startShowingIt('.messages');
     $('.messages').text(attacker + " is attacking " + attacked);
-    setTimeout(function() {
-        stopShowingIt('.messages');
-    }, 1000);
 }
 
 //put the good guy into the dom
@@ -132,6 +145,7 @@ function showBadGuy() {
 
 //gameover message
 function gameover(name) {
+    stopShowingIt('.messages');
     stopShowingIt('.show-character');
     startShowingIt('.gameover');
     var gameoverMessage = function() {

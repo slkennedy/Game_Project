@@ -12,3 +12,7 @@
 // - check the player for a special feature that might let them have another
 // action this turn, and if so, display their options again.
 // - end their turn, now it's someone else's turn.
+
+function playerTurn() {
+    console.log("it's someone's turn");
+}

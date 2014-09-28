@@ -41,6 +41,7 @@ var activePlayers = [];
       showGoodGuy();
       stopShowingIt('#pick-character');
       showBadGuy();
+      startShowingIt('.show-character')
       startShowingIt('.attack');
   });
 

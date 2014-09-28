@@ -21,11 +21,25 @@
 
     <body>
         <div class="container">
+            <section class="page-load hidden">
+                <h1>How many players are in this game?</h1>
+                <div class="human-num">
+                    <h2>Humans</h2>
+                    <input type="text" value="1"/>
+                </div>
+                <div class="computer-num">
+                    <h2>Automated</h2>
+                    <input type="text" value="1" />
+                </div>
+                <input type="submit" id="numberOfPlayers">
+            </section><!--page-load-->
+            <section class="choose-character hidden">
             <form id="pick-character" method="post" class="pick-characters">
                 <h1>Pick Your Character:</h1>
                 <select class="dropdown"></select>
                 <input type="submit" value="I like this one!" id="button"/>
             </form>
+          </section><!--choose-character-->
             <div class="show-character hidden">
                 <div id="good-guy" class="good-character">
                 </div>
@@ -70,10 +84,10 @@
         <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/main.js"></script>
-        <script src="scripts/page-load.js"></script>
-        <script src="scripts/game-play.js"></script>
         <script src="scripts/player-turn.js"></script>
+        <script src="scripts/game-play.js"></script>
+        <script src="scripts/page-load.js"></script>
+        <script src="scripts/main.js"></script>
         <!-- endbuild -->
     </body>
 </html>

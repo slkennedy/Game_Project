@@ -119,10 +119,17 @@ SuperBadGuy.prototype = Object.create(Character.prototype);
                         //Update the DOM
 //=============================================================================
 
-//Add each good character to the dropdown menu at game start
-_.each(goodCharacters, function(output) {
-    reusableTemplate('templates-character-list', '.dropdown', output);
-});
+//Add each character to the dropdown menu at player selection, filtered to show
+//only evil or not evil based on passed param
+function listAvailableCharacters(evil) {
+    var listOfAvail = _.filter(characters, function(character) {
+        return character.evil === evil;
+    });
+    console.log(listOfAvail);
+    _.each(listOfAvail, function(output) {
+        reusableTemplate('templates-character-list', '.dropdown', output);
+    });
+}
 
 //who are you? adds your character name as an id to the container div
 function you(yourCharacter) {
@@ -315,7 +322,7 @@ function getYou() {
 
 
 
-
+gameSetup();
 
 
 

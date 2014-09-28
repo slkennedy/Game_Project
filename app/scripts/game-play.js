@@ -1,19 +1,18 @@
-function gamePlay(numOfPlayers) {
-    var playersCount = numOfPlayers;
+function gamePlay(countComp, countHuman) {
+    var playersCount = countComp + countHuman;
     var activePlayers;
+
+    //set the gameover default value to false. this value is tested to see if
+    //the gameplay should end. it will be updated
     var gameover = false;
 
-    //this function asks the user to select characters as many times as the
-    //number of players they just chose.
-    function makeActivePlayers(playersCount) {
-        _.times(playersCount, function(index) {
-            //this message function creates a message(form) prompting the user to
-            //select their character. the options are: Are you good or evil?,
-            //are you a computer or a human?, if human we ENABLE a dropdown list
-            //of characters they can choose from of type good or evil (based on
-            //their selection) this message will autodelete after clicking on
-            //the button
-            message('templates-create-player', 'create-player');
+    //makeActivePlayers function asks the user to select characters as many
+    //times as the number of players they just chose.
+    function makeActivePlayers(comps, hums) {
+            //open a choose player div w/form prompting the user to select the
+            //character.
+            startShowingIt('.choose-character');
+            listAvailableCharacters(false);
             $('#create-player').on('click', function() {
                 //if the player should be a computer, autogenerate the character
                 if ($('.choose-player .computer :checked')) {
@@ -31,8 +30,8 @@ function gamePlay(numOfPlayers) {
                     assignCharacter();
                 }
             });
-        });
     }
+
 
     //this function checks to see if gameplay level gameover is truthy. so long
     //as it is not, we will go through each active player and give them a turn.
@@ -42,8 +41,11 @@ function gamePlay(numOfPlayers) {
         if (!gameover) {
             _.each(activePlayers, playerTurn);
         }
+        else {
+            gameover();
+        }
     }
 
-    makeActivePLayers();
+    makeActivePlayers(countComp, countHuman);
     takeTurns();
 }

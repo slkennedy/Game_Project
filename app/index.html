@@ -23,23 +23,23 @@
         <div class="container">
             <form id="pick-character" method="post" class="pick-characters">
                 <h1>Pick Your Character:</h1>
-            <select class="dropdown"></select>
-            <input type="submit" value="I like this one!" id="button"/>
-        </form>
-        <div class="show-character hidden">
-            <div id="good-guy" class="good-character">
+                <select class="dropdown"></select>
+                <input type="submit" value="I like this one!" id="button"/>
+            </form>
+            <div class="show-character hidden">
+                <div id="good-guy" class="good-character">
+                </div>
+                <div id="bad-guy" class="bad-character">
+                </div>
+                <div class="info-bar">
+                    <button class="attack hidden">ATTACK!</button>
+                </div>
             </div>
-            <div id="bad-guy" class="bad-character">
+            <div class="messages hidden">
             </div>
-            <div class="info-bar">
-                <button class="attack hidden">ATTACK!</button>
+            <div class="gameover hidden">
+                <a href="/index.html" id="play-again">Play Again</a>
             </div>
-        </div>
-        <div class="messages hidden">
-        </div>
-        <div class="gameover hidden">
-            <a href="/index.html" id="play-again">Play Again</a>
-        </div>
         </div><!-- container -->
 
         <script type="text/template" id="templates-character-list">
@@ -62,6 +62,7 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/page-load.js"></script>
         <!-- endbuild -->
     </body>
 </html>

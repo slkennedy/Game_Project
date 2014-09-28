@@ -3,9 +3,17 @@
 $gutter:0em;
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
+
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
 // Custom Styles
-.body {
-	font-family: $helvetica;
+body {
+	font-family: $monospace;
 	font-size: 100%;
 }
 
@@ -61,17 +69,18 @@ $gutter:0em;
 	outline:red 2px solid;
 }
 
-.attack {
-	
-}
-
 .info-bar {
 	@include span-columns(12);
 	@include omega();
-	background: green;
-	margin-top:2em;
 
 	.attack {
+		-webkit-appearance: none;
+	    -moz-appearance: none;
+	    appearance: none;
+	    @include border-radius(5px);
 		float:right;	
+		margin: 10px;
+	    height: 50px;
+	    width: 25%;
 	}
 }

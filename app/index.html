@@ -46,14 +46,15 @@
                 <div id="bad-guy" class="bad-character">
                 </div>
                 <div class="info-bar">
+                    <div></div>
                     <button class="attack hidden">ATTACK!</button>
                 </div>
-            </div>
-            <div class="messages hidden">
             </div>
             <div class="gameover hidden">
                 <a href="/index.html" id="play-again">Play Again</a>
             </div>
+            <aside class="messages hidden"> 
+            </aside>
         </div><!-- container -->
 
         <script type="text/template" id="templates-character-list">
@@ -65,6 +66,14 @@
         <script type="text/template" id="templates-display-character">
         <h1><%= name %></h1>
         <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
+        </script>
+
+        <script type="text/template" id="templates-turn-message">
+            <h1><%=player turn%></h1>
+        </script>        
+
+        <script type="text/template" id="templates-turn-results">
+            <h1><%=player action%><%=action result%></h1>
         </script>
 
         <!-- build:js scripts/vendor.js -->

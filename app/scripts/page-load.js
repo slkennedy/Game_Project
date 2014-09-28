@@ -2,7 +2,7 @@
 // - user is prompted how many players? (user can pick a number)
 // - after user picks a number the gameplay function is initiated
 
-function howManyPlayers() {
+function gameSetup() {
     //this message function will create a welcome message for the new user.
     //it will contain a submit button with id='numberOfPlayers' class='message'
     //they will be prompted to say how many players they want in their game.
@@ -26,7 +26,6 @@ function howManyPlayers() {
     });
 }
 
-howManyPlayers();
 
 
 

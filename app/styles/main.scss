@@ -48,7 +48,7 @@ body {
 	border: solid 5px black;
 	@include border-radius(5px);
 	text-align: center;
-\	font-size: 2em;
+	font-size: 2em;
 	text-transform: uppercase;
 }
 
@@ -76,7 +76,7 @@ body {
 	@include span-columns(6);
 	@include omega();
 	float:left;
-	outline:red solid 2px;	
+	outline:red solid 2px;
 
 }
 
@@ -96,7 +96,7 @@ body {
 	    -moz-appearance: none;
 	    appearance: none;
 	    @include border-radius(5px);
-		float:right;	
+		float:right;
 		margin: 10px;
 	    height: 50px;
 	    width: 25%;

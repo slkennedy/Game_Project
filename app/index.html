@@ -26,7 +26,7 @@
             <select class="dropdown"></select>
             <input type="submit" value="I like this one!" id="button"/>
         </form>
-        <div class="show-character">
+        <div class="show-character hidden">
             <div id="good-guy" class="good-character">
             </div>
             <div id="bad-guy" class="bad-character">
@@ -41,7 +41,7 @@
             <a href="/index.html" id="play-again">Play Again</a>
         </div>
         </div><!-- container -->
-      
+
         <script type="text/template" id="templates-character-list">
         <option value= "<%= name %>">Name: <%= name %>,
             Health: <%= health %>
@@ -52,14 +52,14 @@
         <h1><%= name %></h1>
         <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
         </script>
-        
+
         <!-- build:js scripts/vendor.js -->
         <!-- bower:js -->
         <script src="../bower_components/jquery/dist/jquery.js"></script>
         <script src="../bower_components/underscore/underscore.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
-        
+
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
         <!-- endbuild -->

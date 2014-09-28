@@ -5,7 +5,7 @@
 var characters = [{
     name: 'sara',
     health: 20,
-    evil: false
+    evil: false,
 }, {
     name: 'jess',
     health: 20,

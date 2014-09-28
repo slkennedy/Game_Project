@@ -41,14 +41,18 @@ body {
 }
 
 .messages{
-	@include span-columns(10);
+	@include span-columns(5);
 	@include omega();
-	background: #c0c0c0;
+	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	background: #fff;
 	z-index: 10;
 	border: solid 5px black;
 	@include border-radius(5px);
 	text-align: center;
-\	font-size: 2em;
+	font-size: 2em;
 	text-transform: uppercase;
 }
 
@@ -63,42 +67,54 @@ body {
 }
 
 .show-character {
-	@include span-columns(12);
+	@include span-columns(10);
 	@include omega();
+	position:fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 	background: #c8c8c8;
-	border: solid 5px black;
 	@include border-radius(5px);
 	text-align: center;
-	font-size: 2em;
+	font-size: 1.5em;
 }
 
 .good-character {
-	@include span-columns(6);
-	@include omega();
-	float:left;
-	outline:red solid 2px;	
+	// @include span-columns(6);
+	// @include omega();
+	// float:left;
+	background: blue;
+	position: relative;
+	width: 400px;
+	@include border-radius(5px);
+	color: white;
 
 }
 
 .bad-character {
-	@include span-columns(6);
-	@include omega();
-	float:right;
-	outline:red 2px solid;
+	// @include span-columns(6);
+	// @include omega();
+	// float:right;
+	position:relative;
+	width: 400px;
+	background: red;
+	@include border-radius(5px);
 }
 
 .info-bar {
 	@include span-columns(12);
 	@include omega();
-
+	height:170px;
 	.attack {
 		-webkit-appearance: none;
 	    -moz-appearance: none;
 	    appearance: none;
-	    @include border-radius(5px);
+	    @include border-radius(500px);
+	    color: white;
+	    background: red;
 		float:right;	
-		margin: 10px;
-	    height: 50px;
-	    width: 25%;
+		margin: 5px;
+	    height: 150px;
+	    width: em(100px);
 	}
 }

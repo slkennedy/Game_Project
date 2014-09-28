@@ -132,7 +132,7 @@ function showBadGuy() {
 //gameover message
 function gameover(name) {
     stopShowingIt('.show-character');
-    startShowingIt('.messages');
+    startShowingIt('.gameover');
     var gameoverMessage = function() {
       var message;
       var yourCharacter = getYou();
@@ -144,7 +144,7 @@ function gameover(name) {
       }
       return message;
     };
-    $('.gameover').text(gameoverMessage);
+    $('.gameover').prepend(gameoverMessage);
 
 }
 

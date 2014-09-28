@@ -14,13 +14,16 @@ function gamePlay(countComp, countHuman) {
         if (h > 0) {
             //show the choose character form.
             startShowingIt('.choose-character');
+            stopShowingIt('.dropdown');
             //the player selects or evil, set evil to true
             $('#imEvil').on('click', function(e) {
                 e.preventDefault();
+                startShowingIt('.dropdown');
                 listAvailableCharacters(true);
             });
             $('#imGood').on('click', function(e) {
                 e.preventDefault();
+                startShowingIt('.dropdown');
                 listAvailableCharacters(false);
             });
             //when the player clicks on the submit for this form

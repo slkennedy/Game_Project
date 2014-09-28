@@ -34,16 +34,16 @@ var activePlayers = [];
 //=============================================================================
 
   //Reacts to form submission by creating a new instance of Character
-  $("#pick-character").on('submit', function(event) {
-      event.preventDefault();
-      you($('.dropdown').val());
-      assignCharacters();
-      showGoodGuy();
-      stopShowingIt('#pick-character');
-      showBadGuy();
-      startShowingIt('.show-character')
-      startShowingIt('.attack');
-  });
+  // $("#pick-character").on('submit', function(event) {
+  //     event.preventDefault();
+  //     you($('.dropdown').val());
+  //     assignCharacters();
+  //     showGoodGuy();
+  //     stopShowingIt('#pick-character');
+  //     showBadGuy();
+  //     startShowingIt('.show-character');
+  //     startShowingIt('.attack');
+  // });
 
   //Reacts to click of the attack button
   $('.attack').on('click', function(e) {
@@ -125,7 +125,7 @@ function listAvailableCharacters(evil) {
     var listOfAvail = _.filter(characters, function(character) {
         return character.evil === evil;
     });
-    console.log(listOfAvail);
+    $('.dropdown').empty();
     _.each(listOfAvail, function(output) {
         reusableTemplate('templates-character-list', '.dropdown', output);
     });

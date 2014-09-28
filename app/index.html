@@ -36,6 +36,9 @@
             <section class="choose-character hidden">
             <form id="pick-character" method="post" class="pick-characters">
                 <h1>Pick Your Character:</h1>
+                <h2>Are you good or evil?</h2>
+                <a href="#" id='imGood'>Good</a>
+                <a href="#" id='imEvil'>Evil</a>
                 <select class="dropdown"></select>
                 <input type="submit" value="I like this one!" id="button"/>
             </form>
@@ -52,7 +55,7 @@
             <div class="gameover hidden">
                 <a href="/index.html" id="play-again">Play Again</a>
             </div>
-            <aside class="messages hidden"> 
+            <aside class="messages hidden">
             </aside>
         </div><!-- container -->
 
@@ -69,7 +72,7 @@
 
         <script type="text/template" id="templates-turn-message">
             <h1><%=player turn%></h1>
-        </script>        
+        </script>
 
         <script type="text/template" id="templates-turn-results">
             <h1><%=player action%><%=action result%></h1>

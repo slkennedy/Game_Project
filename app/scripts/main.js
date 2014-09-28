@@ -90,13 +90,21 @@ function Character(characterSelection) {
     this.health = (characterModel.health) ? characterModel.health : 100;
     this.evil = (characterModel.evil) ? characterModel.evil : true;
     this.alive = true;
+    this.poisoned = false;
 }
 
 //Attack function on Character Prototype
 Character.prototype.attack = function(attacked) {
     attacker = this.name;
     attacked.health = attacked.health - _.random(1, 10);
+};
 
+Character.prototype.poison = function(poisoned) {
+	this.poisoned = true;
+};
+
+Character.prototype.antidote = function(antidote) {
+	this.poisoned = false;
 };
 
 //create an extension of characters that makes a super evil badguy
@@ -160,8 +168,12 @@ function gameover(name) {
       return message;
     };
     $('.gameover').prepend(gameoverMessage);
+}
+
+function messages(msg) {
 
 }
+
 
 //=============================================================================
                         //GamePlay functions

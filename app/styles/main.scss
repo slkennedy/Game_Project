@@ -3,8 +3,6 @@
 $gutter:0em;
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
-
-
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
      -moz-border-radius: $radius;
@@ -26,12 +24,32 @@ body {
   display: none !important;
 }
 
-.gameover,
-.messages {
+.gameover{
 	position:absolute;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
+	background: #c0c0c0;
+	z-index: 10;
+	width: 25%;
+	border: solid 5px black;
+	@include border-radius(5px);
+	text-align: center;
+	padding: 20px;
+	font-size: 2em;
+	text-transform: uppercase;
+}
+
+.messages{
+	@include span-columns(10);
+	@include omega();
+	background: #c0c0c0;
+	z-index: 10;
+	border: solid 5px black;
+	@include border-radius(5px);
+	text-align: center;
+\	font-size: 2em;
+	text-transform: uppercase;
 }
 
 .pick-characters {
@@ -45,13 +63,13 @@ body {
 }
 
 .show-character {
-	@include span-columns(10);
+	@include span-columns(12);
 	@include omega();
-	position: fixed;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	outline:red solid 2px;
+	background: #c8c8c8;
+	border: solid 5px black;
+	@include border-radius(5px);
+	text-align: center;
+	font-size: 2em;
 }
 
 .good-character {

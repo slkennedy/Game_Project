@@ -1,3 +1,7 @@
+//=============================================================================
+                          //Global Variables
+//=============================================================================
+
 var characters = [{
     name: 'sara',
     health: 20,
@@ -24,35 +28,41 @@ var badCharacters = _.filter(characters, function(character) {
 var goodGuy;
 var badGuy;
 
-//user events
-//Reacts to form submission by creating a new instance of Character
-$("#pick-character").on('submit', function(event) {
-    event.preventDefault();
-    assignCharacters();
-    showGoodGuy();
-    stopShowingIt('#pick-character');
-    showBadGuy();
-    startShowingIt('.attack');
-});
+//=============================================================================
+                          //User-Caused Events
+//=============================================================================
 
-//Reacts to click of the attack button
-$('.attack').on('click', function(e) {
-    e.preventDefault();
-    goodGuy.attack(badGuy);
-    if (badGuy.health > 0) {
-        updateLifeStatus(badGuy);
-        badGuy.attack(goodGuy);
-        if (goodGuy.health > 0) {
-            updateLifeStatus(goodGuy);
-        } else {
-            gameover();
-        }
-    } else {
-        gameover();
-    }
-});
+  //Reacts to form submission by creating a new instance of Character
+  $("#pick-character").on('submit', function(event) {
+      event.preventDefault();
+      assignCharacters();
+      showGoodGuy();
+      stopShowingIt('#pick-character');
+      showBadGuy();
+      startShowingIt('.attack');
+  });
 
-//Character constructor
+  //Reacts to click of the attack button
+  $('.attack').on('click', function(e) {
+      e.preventDefault();
+      goodGuy.attack(badGuy);
+      if (badGuy.health > 0) {
+          updateLifeStatus(badGuy);
+          badGuy.attack(goodGuy);
+          if (goodGuy.health > 0) {
+              updateLifeStatus(goodGuy);
+          } else {
+              gameover();
+          }
+      } else {
+          gameover();
+      }
+  });
+
+//=============================================================================
+                        //Character constructors
+//=============================================================================
+
 function Character(characterSelection) {
     characterModel = characterSelection || {};
     this.name = (characterModel.name) ? characterModel.name : 'No Name';
@@ -60,12 +70,29 @@ function Character(characterSelection) {
     this.evil = (characterModel.evil) ? characterModel.evil : true;
 }
 
-//Attack Prototype
+//Attack function on Character Prototype
 Character.prototype.attack = function(attacked) {
     attacker = this.name;
     attacked.health = attacked.health - _.random(1, 10);
 
 };
+
+//create an extension of characters that makes a super evil badguy
+function SuperBadGuy(characterSelection) {
+    Character.apply(this, arguments);
+    this.health = 500;
+}
+
+SuperBadGuy.prototype = Object.create(Character.prototype);
+
+//=============================================================================
+                        //Update the DOM
+//=============================================================================
+
+//Add each good character to the dropdown menu at game start
+_.each(goodCharacters, function(output) {
+    reusableTemplate('templates-character-list', '.dropdown', output);
+});
 
 //Update health display
 function updateLifeStatus(character) {
@@ -82,16 +109,6 @@ function attackAlert(attacker, attacked) {
     }, 1000);
 }
 
-//create an extension of characters that makes a super evil badguy
-function SuperBadGuy(characterSelection) {
-    Character.apply(this, arguments);
-    this.health = 500;
-}
-
-SuperBadGuy.prototype = Object.create(Character.prototype);
-
-
-
 //put the good guy into the dom
 function showGoodGuy() {
     reusableTemplate('templates-display-character', '#good-guy', goodGuy);
@@ -99,9 +116,19 @@ function showGoodGuy() {
 
 //put the bad guy into the dom
 function showBadGuy() {
-    reusableTemplate('templates-display-character', '#bad-guy', badGuy)
+    reusableTemplate('templates-display-character', '#bad-guy', badGuy);
 }
 
+//gameover message
+function gameover(name) {
+    stopShowingIt('.show-character');
+    startShowingIt('.messages');
+    $('.messages').text('game-over');
+}
+
+//=============================================================================
+                        //GamePlay functions
+//=============================================================================
 
 //taking user choice of charcter and auto-generating bad guy
 function assignCharacters() {
@@ -112,7 +139,12 @@ function assignCharacters() {
     goodGuyModel = goodGuyModel[0];
     goodGuy = new Character(goodGuyModel);
 
-    var badGuyModel = _.sample(badCharacters) //random badguy;
+    autoGeneratePlayer();
+}
+
+//autogenerates a computer player who is a badguy
+function autoGeneratePlayer() {
+    var badGuyModel = _.sample(badCharacters); //random badguy;
     var badGuyType = _.random(1);
     if (badGuyType === 0) {
         badGuy = new SuperBadGuy(badGuyModel);
@@ -122,18 +154,9 @@ function assignCharacters() {
 }
 
 
-//gameover message
-function gameover(name) {
-    stopShowingIt('.show-character');
-    startShowingIt('.messages');
-    $('.messages').text('game-over');
-}
 
 //
 //
-
-
-
 // our confusing attempt at understanding deferred
 // function event() {
 //   var defer = new $.Deferred();
@@ -206,16 +229,17 @@ function gameover(name) {
 //   });
 // });
 
-//general functions
+
+//=============================================================================
+                        //General Functions
+//=============================================================================
+
 function reusableTemplate(templateId, container, model) {
     var templateFunction = _.template($('#' + templateId).text());
     var renderedTemplate = templateFunction(model);
     $(container).append(renderedTemplate);
 }
 
-_.each(goodCharacters, function(output) {
-    reusableTemplate('templates-character-list', '.dropdown', output);
-});
 
 function stopShowingIt(what) {
     $(what).addClass('hidden');

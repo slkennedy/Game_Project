@@ -22,25 +22,29 @@
     <!-- endbuild -->
   </head>
   <body>
-    <form id="pick-character" method="post">
-        <h1>Pick Your Character:</h1>
-        <select class="dropdown"></select>
-        <input type="submit" value="I like this one!" id="button"/>
-    </form>
+    <div class="container">
+      
+      <form id="pick-character" method="post">
+          <h1>Pick Your Character:</h1>
+          <select class="dropdown"></select>
+          <input type="submit" value="I like this one!" id="button"/>
+      </form>
 
-    <div class="show-character">
-      <div id="good-guy">
+      <div class="show-character">
+        <div id="good-guy">
+        </div>
+        <button class="attack hidden">ATTACK!</button>
+        <div id="bad-guy">
+        </div>
       </div>
-      <button class="attack hidden">ATTACK!</button>
-      <div id="bad-guy">
+
+      <div class="messages">
       </div>
-    </div>
 
-    <div class="messages">
-    </div>
+      <div class="gameover">
+      </div>
 
-    <div class="gameover">
-    </div>
+    </div><!-- container -->
 
     <script type="text/template" id="templates-character-list">
         <option value= "<%= name %>">Name: <%= name %>,

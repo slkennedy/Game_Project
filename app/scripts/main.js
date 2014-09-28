@@ -27,6 +27,7 @@ var badCharacters = _.filter(characters, function(character) {
 });
 var goodGuy;
 var badGuy;
+var activePlayers = [];
 
 //=============================================================================
                           //User-Caused Events
@@ -35,6 +36,7 @@ var badGuy;
   //Reacts to form submission by creating a new instance of Character
   $("#pick-character").on('submit', function(event) {
       event.preventDefault();
+      you($('.dropdown').val());
       assignCharacters();
       showGoodGuy();
       stopShowingIt('#pick-character');
@@ -52,9 +54,11 @@ var badGuy;
           if (goodGuy.health > 0) {
               updateLifeStatus(goodGuy);
           } else {
+              goodGuy.alive = false;
               gameover();
           }
       } else {
+          badGuy.alive = false;
           gameover();
       }
   });
@@ -68,6 +72,7 @@ function Character(characterSelection) {
     this.name = (characterModel.name) ? characterModel.name : 'No Name';
     this.health = (characterModel.health) ? characterModel.health : 100;
     this.evil = (characterModel.evil) ? characterModel.evil : true;
+    this.alive = true;
 }
 
 //Attack function on Character Prototype
@@ -93,6 +98,11 @@ SuperBadGuy.prototype = Object.create(Character.prototype);
 _.each(goodCharacters, function(output) {
     reusableTemplate('templates-character-list', '.dropdown', output);
 });
+
+//who are you? adds your character name as an id to the container div
+function you(yourCharacter) {
+    $('.container').attr('id', yourCharacter);
+}
 
 //Update health display
 function updateLifeStatus(character) {
@@ -123,7 +133,19 @@ function showBadGuy() {
 function gameover(name) {
     stopShowingIt('.show-character');
     startShowingIt('.messages');
-    $('.messages').text('game-over');
+    var gameoverMessage = function() {
+      var message;
+      var yourCharacter = getYou();
+      if (yourCharacter.alive === true) {
+        message = "Gameover, you win!";
+      }
+      else{
+        message = "Gameover, you lose!";
+      }
+      return message;
+    };
+    $('.gameover').text(gameoverMessage);
+
 }
 
 //=============================================================================
@@ -138,7 +160,7 @@ function assignCharacters() {
     });
     goodGuyModel = goodGuyModel[0];
     goodGuy = new Character(goodGuyModel);
-
+    activePlayers.push(goodGuy);
     autoGeneratePlayer();
 }
 
@@ -151,6 +173,7 @@ function autoGeneratePlayer() {
     } else {
         badGuy = new Character(badGuyModel);
     }
+    activePlayers.push(badGuy);
 }
 
 
@@ -248,5 +271,27 @@ function stopShowingIt(what) {
 function startShowingIt(what) {
     $(what).removeClass('hidden');
 }
+
+//this function returns the Character instance you are playing with based on the
+//name set to your container div in the 'you' function
+function getYou() {
+    var yourName = $('.container').attr('id');
+    var yourCharacter;
+    _.each(activePlayers, function(player) {
+        if (player.name === yourName) {
+            yourCharacter = player;
+        }
+    });
+    return yourCharacter;
+}
+
+
+
+
+
+
+
+
+
 
 //

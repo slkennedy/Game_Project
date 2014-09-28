@@ -1,13 +1,77 @@
  // Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
+$gutter:0em;
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // Custom Styles
-
-.hidden {
-  display: none;
+.body {
+	font-family: $helvetica;
+	font-size: 100%;
 }
 
+.container {
+	@include outer-container;
+	width: 100%;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.gameover,
 .messages {
 	position:absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.pick-characters {
+	position: absolute;
+	width: 80%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	outline: red solid 2px;
+	text-align: center;
+}
+
+.show-character {
+	@include span-columns(10);
+	@include omega();
+	position: fixed;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	outline:red solid 2px;
+}
+
+.good-character {
+	@include span-columns(6);
+	@include omega();
+	float:left;
+	outline:red solid 2px;	
+
+}
+
+.bad-character {
+	@include span-columns(6);
+	@include omega();
+	float:right;
+	outline:red 2px solid;
+}
+
+.attack {
+	
+}
+
+.info-bar {
+	@include span-columns(12);
+	@include omega();
+	background: green;
+	margin-top:2em;
+
+	.attack {
+		float:right;	
+	}
 }

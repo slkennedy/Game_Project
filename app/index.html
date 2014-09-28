@@ -1,74 +1,67 @@
 <!doctype html>
 <html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
-    <title>Game_Project</title>
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <head>
+        <meta charset="utf-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+        <title>Game_Project</title>
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <!-- build:css styles/vendor.css -->
+        <!-- bower:css -->
+        <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
+        <!-- endbower -->
+        <!-- endbuild -->
+        <!-- build:css styles/main.css -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- endbuild -->
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="../bower_components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
 
-    <!-- build:css styles/vendor.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="../bower_components/normalize-css/normalize.css" />
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css styles/main.css -->
-    <link rel="stylesheet" href="styles/main.css">
-    <!-- endbuild -->
-
-    <!-- build:js scripts/vendor/modernizr.js -->
-    <script src="../bower_components/modernizr/modernizr.js"></script>
-    <!-- endbuild -->
-  </head>
-  <body>
-    <div class="container">
-
-      <form id="pick-character" method="post">
-          <h1>Pick Your Character:</h1>
-          <select class="dropdown"></select>
-          <input type="submit" value="I like this one!" id="button"/>
-      </form>
-
-      <div class="show-character">
-        <div id="good-guy">
+    <body>
+        <div class="container">
+            <form id="pick-character" method="post" class="pick-characters">
+                <h1>Pick Your Character:</h1>
+            <select class="dropdown"></select>
+            <input type="submit" value="I like this one!" id="button"/>
+        </form>
+        <div class="show-character">
+            <div id="good-guy" class="good-character">
+            </div>
+            <div id="bad-guy" class="bad-character">
+            </div>
+            <div class="info-bar">
+                <button class="attack hidden">ATTACK!</button>
+            </div>
         </div>
-        <button class="attack hidden">ATTACK!</button>
-        <div id="bad-guy">
+        <div class="messages hidden">
         </div>
-      </div>
-
-      <div class="messages hidden">
-      </div>
-
-      <div class="gameover hidden">
-        <a href="/index.html" id="play-again">Play Again</a>
-      </div>
-
-    </div><!-- container -->
-
-    <script type="text/template" id="templates-character-list">
+        <div class="gameover hidden">
+            <a href="/index.html" id="play-again">Play Again</a>
+        </div>
+        </div><!-- container -->
+      
+        <script type="text/template" id="templates-character-list">
         <option value= "<%= name %>">Name: <%= name %>,
-         Health: <%= health %>
+            Health: <%= health %>
         </option>
-    </script>
+        </script>
 
-    <script type="text/template" id="templates-display-character">
-      <h1><%= name %></h1>
-      <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
-    </script>
-
-
-    <!-- build:js scripts/vendor.js -->
-    <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../bower_components/underscore/underscore.js"></script>
-    <!-- endbower -->
-    <!-- endbuild -->
-
+        <script type="text/template" id="templates-display-character">
+        <h1><%= name %></h1>
+        <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
+        </script>
+        
+        <!-- build:js scripts/vendor.js -->
+        <!-- bower:js -->
+        <script src="../bower_components/jquery/dist/jquery.js"></script>
+        <script src="../bower_components/underscore/underscore.js"></script>
+        <!-- endbower -->
+        <!-- endbuild -->
+        
         <!-- build:js scripts/main.js -->
         <script src="scripts/main.js"></script>
-
         <!-- endbuild -->
-</body>
+    </body>
 </html>

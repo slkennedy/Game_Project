@@ -5,10 +5,11 @@ $gutter:0em;
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
-      -ms-border-radius: $radius;
-          border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  border-radius: $radius;
 }
+
 // Custom Styles
 body {
 	font-family: $monospace;
@@ -34,27 +35,35 @@ body {
 }
 
 .gameover{
-	position:absolute;
+	position: absolute;
+	width: 50%;
+	height: 300px;
 	left: 50%;
 	top: 50%;
 	transform: translate(-50%, -50%);
-	background: #c0c0c0;
-	z-index: 10;
-	width: 25%;
-	border: solid 5px black;
-	@include border-radius(5px);
+	border: #c8c8c8 solid 5px;
 	text-align: center;
-	padding: 20px;
+	color: white;
 	font-size: 2em;
+	background: HSLA(0, 0%, 100%, .3);
+	@include border-radius(5px);
+	z-index: 10;
 	text-transform: uppercase;
+	padding-top: 9%;
+
+	a {
+		text-decoration: none;
+		color: blue;
+		font-weight: bold;
+		display: block;
+	}
 }
 
 .messages{
 	@include span-columns(2);
 	@include omega();
-	height: 390px;
 	position:fixed;
-	right: 10%;
+	right: 8.4%;
 	top: 32px;
 	background: #fff;
 	z-index: 10;
@@ -64,8 +73,12 @@ body {
 	overflow: scroll;
 
 	h2 {
+		@include span-columns(2);
+		@include omega();
 		background: #c8c8c8;
 		margin-top:0;
+		position: fixed;
+		color: blue;
 	}
 
 	.msg-div{	
@@ -96,7 +109,7 @@ body {
 	text-align: center;
 	color: white;
 	font-size: 2em;
-	background: HSLA(0, 0%, 100%, .2);
+	background: HSLA(0, 0%, 100%, .3);
 	@include border-radius(5px);
 
 	h2 {
@@ -127,7 +140,7 @@ body {
 	text-align: center;
 	color: white;
 	font-size: 2em;
-	background: HSLA(0, 0%, 100%, .2);
+	background: HSLA(0, 0%, 100%, .3);
 	@include border-radius(5px);
 
 	a {
@@ -171,15 +184,32 @@ body {
 	font-size: 1.5em;
 	padding: 50px;
 	height: 500px;
-	width: 80%;
+
+	.health-bar {
+		max-width: 200px;
+		height: 30px;
+		background-color: HSLA(129, 77%, 53%, 1);
+		border:2px solid blue;
+		margin-left: 10px;
+	}
+
+	.image-holder {
+		width: em(150px);
+		height: 200px;
+
+		.character-image {
+			max-width: 100%;
+			max-height: 100%;
+			@include border-radius(500px);
+			border: 1px solid white;
+		}
+	}
 
 	.good-character {
-		@include span-columns(4);
-		@include omega();
 		left: 20%;
-		top: 30%;
+		top: 40%;
 		transform: translate(-50%, -50%);
-		background: blue;
+		background: transparent;
 		position: absolute;
 		@include border-radius(5px);
 		color: white;
@@ -200,13 +230,12 @@ body {
 	}
 
 	.bad-character {
-		@include span-columns(4);
-		@include omega();
 		left: 60%;
-		top: 30%;
+		top: 40%;
 		transform: translate(-50%, -50%);
 		position:absolute;
-		background: red;
+		background: transparent;
+		color: white;
 		@include border-radius(5px);
 
 
@@ -228,14 +257,49 @@ body {
 		@include omega();
 		// position: relative;
 		height:170px;
-		background: HSLA(70, 8%, 15%, 1);
 		left: 50%;
 		top: 98%;
 		transform: translate(-50%, -50%);
 		position:fixed;
 		margin-bottom: 50px;
 		@include border-radius(5px);
-		
+		background-image: url('../images/dashboard.jpg');	
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-size: cover;	
+
+		.nav1 {
+			background-image: url("../images/nav_panel.png");
+			background-position: center center;
+			background-size: 90%;
+			background-repeat: no-repeat;
+			width: em(120px);
+			height: 170px;
+			float:left;
+			margin-left: 120px;
+		}
+		.nav2 {
+			background-image: url("../images/gauge2.png");
+			background-position: center center;
+			background-size: 90%;
+			background-repeat: no-repeat;
+			width: em(120px);
+			height: 170px;
+			float:left;
+			margin-left: 10px;
+		}
+		.nav3 {
+			background-image: url("../images/gauge3.png");
+			background-position: center center;
+			background-size: 90%;
+			background-repeat: no-repeat;
+			width: em(120px);
+			height: 170px;
+			float:left;
+			margin-left: 10px;
+		}
+
+
 		.attack {
 			-webkit-appearance: none;
 		    -moz-appearance: none;
@@ -248,12 +312,14 @@ body {
 		    height: 150px;
 		    width: em(100px);
 		    margin-top: 10px;
+		    margin-right: 30px;
 		}
 	}
 
 }
 
 //Media Queries
+
 @media (max-width: 695px) {
 	.messages,
 	.show-character,

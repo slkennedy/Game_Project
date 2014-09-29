@@ -1,3 +1,153 @@
+// ## what happens during playerTurn function??
+// - check if player is alive. if they are alive, continue. otherwise, you're done.
+// - check if player is computer. if they are, the rest of their turn will be
+// randomly generated based on available options.
+// ### when the player is human
+// - display the player's turn options as buttons with a "what do you want to
+// do?" prompt. they might include: attack, poison, heal, etc.
+// - if appropriate, ask the player who they want to target with that action.
+// this can be a dropdown list, or maybe buttons or visual representations of
+// each character that they might target.
+// - perform the action.
+// - check the player for a special feature that might let them have another
+// action this turn, and if so, display their options again.
+// - end their turn, now it's someone else's turn.
+
+function playerTurn() {
+    console.log("it's someone's turn");
+}
+
+function gamePlay(countComp, countHuman) {
+    var playersCount = countComp + countHuman;
+    var activePlayers;
+
+    //set the gameover default value to false. this value is tested to see if
+    //the gameplay should end. it will be updated
+    var gameover = false;
+
+    //makeActivePlayers function asks the user to select characters as many
+    //times as the number of players they just chose.
+    function makeActivePlayers(comps, hums) {
+        var c = comps;
+        var h = hums;
+        if (h > 0) {
+            //show the choose character form.
+            startShowingIt('.choose-character');
+            stopShowingIt('.dropdown');
+            //the player selects or evil, set evil to true
+            $('#imEvil').on('click', function(e) {
+                e.preventDefault();
+                startShowingIt('.dropdown');
+                listAvailableCharacters(true);
+                $('#pick-character p').remove();
+            });
+            $('#imGood').on('click', function(e) {
+                e.preventDefault();
+                startShowingIt('.dropdown');
+                listAvailableCharacters(false);
+                $('#pick-character p').remove();
+            });
+            //when the player clicks on the submit for this form
+            $('#pick-character').on('submit', function(e) {
+                e.preventDefault();
+                if (!$('.dropdown').val()) {
+                    $('#pick-character').append("<p>please choose good or evil</p>");
+                } else {
+                    you($('.dropdown').val());
+                    assignCharacters();
+                    showGoodGuy();
+                    stopShowingIt('#pick-character');
+                    showBadGuy();
+                    startShowingIt('.show-character');
+                    startShowingIt('.attack');
+                    startShowingIt('.messages');
+                }
+            });
+        }
+        //after all the humans are created
+        else {
+
+        }
+        // listAvailableCharacters(false);
+        // $('#create-player').on('click', function() {
+        //     //if the player should be a computer, autogenerate the character
+        //     if ($('.choose-player .computer :checked')) {
+        //         //autogen needs updating but creates a character at random
+        //         //right now it only creates an evil character. needs to be
+        //         //able to create evil or not evil based on passed arg.
+        //         autoGeneratePlayer();
+        //     }
+        //     //if it should be a human,
+        //     else {
+        //         //assignCharacter function needs updating but gets the
+        //         //character name from the dropdown box, and adds a player
+        //         //to activePlayers list based on it. needs to have the index
+        //         //added to it
+        //         assignCharacter();
+        //     }
+        // });
+    }
+
+
+    //this function checks to see if gameplay level gameover is truthy. so long
+    //as it is not, we will go through each active player and give them a turn.
+    //we are passing the playerTurn function the Character instance as it's
+    //argument
+    function takeTurns() {
+        if (!gameover) {
+            _.each(activePlayers, playerTurn);
+        } else {
+            gameover();
+        }
+    }
+
+    makeActivePlayers(countComp, countHuman);
+    takeTurns();
+}
+// ## what happens on page load?
+// - user is prompted how many players? (user can pick a number)
+// - after user picks a number the gameplay function is initiated
+
+function gameSetup() {
+    //display the page-load div that asks the user how many human and computer
+    //players there are.
+    stopShowingIt('.messages');
+    startShowingIt('.page-load');
+    $('#numberOfPlayers').on('click', function() {
+        //this is currently unused but hopefully will allow for multiple game
+        //instances to join on the mulitplayer internet version.
+        var gameInstance = [];
+
+        //get the value on the welcome form that indicates how many players the
+        //user wants to create.
+        var compNum = +$('.computer-num input').val();
+        var humanNum = +$('.human-num input').val();
+        var numberOfPlayers = compNum + humanNum;
+
+        //make sure the player chooses at least 2 characters, display error
+        //on screen if not and do not proceed
+        if (numberOfPlayers < 2 || isNaN(numberOfPlayers)) {
+            $('.page-load').append("<p>Please select at least 2 players</p>");
+        }
+
+        //the user has successfully submitted at least 2 characters and may
+        //proceed to gamePlay.
+        else {
+            stopShowingIt('.page-load');
+            gamePlay(compNum, humanNum);
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+//
 //=============================================================================
 //Global Variables
 //=============================================================================

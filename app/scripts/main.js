@@ -1,8 +1,8 @@
 //=============================================================================
                           //Global Variables
 //=============================================================================
-(function () {
-    'use strict';
+// (function (){
+// 	'use strict';
 
 var characters = [{
     name: 'sara',
@@ -49,17 +49,6 @@ var turnResult;
   //     startShowingIt('.show-character');
   //     startShowingIt('.attack');
   // });
-
-//message board
-function messages(attacker, attacked, healthResult) {
-	whoseTurn = ("It's "+attacker+"'s turn.");
-	playerAction = (attacker + " is attacking " + attacked);
-	turnResult = (attacked+"'s new health is "+healthResult);
-
-	reusableTemplate('templates-whose-turn', '.msg-div', whoseTurn);
-	reusableTemplate('templates-turn-action', '.msg-div', playerAction);
-	reusableTemplate('templates-turn-result', '.msg-div', turnResult);
-}
 
   //Reacts to click of the attack button
   $('.attack').on('click', function(e) {
@@ -188,7 +177,16 @@ function gameover(name) {
     $('.gameover').prepend(gameoverMessage);
 }
 
+//message board
+function messages(attacker, attacked, healthResult) {
+	whoseTurn = ("It's "+attacker+"'s turn.");
+	playerAction = (attacker + " is attacking " + attacked);
+	turnResult = (attacked+"'s new health is "+healthResult);
 
+	reusableTemplate('templates-whose-turn', '.msg-div', whoseTurn);
+	reusableTemplate('templates-turn-action', '.msg-div', playerAction);
+	reusableTemplate('templates-turn-result', '.msg-div', turnResult);
+}
 
 
 //=============================================================================
@@ -336,5 +334,6 @@ gameSetup();
 
 
 
-});
+// });
+
 //

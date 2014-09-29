@@ -1,6 +1,8 @@
 //=============================================================================
                           //Global Variables
 //=============================================================================
+// (function (){
+// 	'use strict';
 
 var characters = [{
     name: 'sara',
@@ -28,6 +30,9 @@ var badCharacters = _.filter(characters, function(character) {
 var goodGuy;
 var badGuy;
 var activePlayers = [];
+var whoseTurn;
+var playerAction;
+var turnResult;
 
 //=============================================================================
                           //User-Caused Events
@@ -48,36 +53,29 @@ var activePlayers = [];
   //Reacts to click of the attack button
   $('.attack').on('click', function(e) {
       e.preventDefault();
+      startShowingIt('.messages');
       stopShowingIt('.attack');
-      setTimeout(function() {
-        attackAlert(goodGuy.name, badGuy.name);
-        setTimeout(function() {
+        messages(goodGuy.name, badGuy.name);
           goodGuy.attack(badGuy);
+          healthResult = badGuy.health;
+          messages(healthResult);
           if (badGuy.health > 0) {
               updateLifeStatus(badGuy);
-              stopShowingIt('.messages');
-              setTimeout(function() {
-                attackAlert(badGuy.name, goodGuy.name);
-                setTimeout(function() {
+                messages(badGuy.name, goodGuy.name);
                   badGuy.attack(goodGuy);
+                  healthResult = goodGuy.health;
+         			messages(healthResult);
                   if (goodGuy.health > 0) {
                       updateLifeStatus(goodGuy);
-                      stopShowingIt('.messages');
-                      setTimeout(function() {
                         startShowingIt('.attack');
-                      }, 500);
                   } else {
                       goodGuy.alive = false;
                       gameover();
                   }
-                }, 500);
-              }, 500);
           } else {
               badGuy.alive = false;
               gameover();
           }
-        }, 500);
-      }, 500);
   });
 
 //=============================================================================
@@ -95,8 +93,10 @@ function Character(characterSelection) {
 
 //Attack function on Character Prototype
 Character.prototype.attack = function(attacked) {
-    attacker = this.name;
+    var attacker = this.name;
     attacked.health = attacked.health - _.random(1, 10);
+    var healthResult = attacked.health;
+
 };
 
 Character.prototype.poison = function(poisoned) {
@@ -143,10 +143,10 @@ function updateLifeStatus(character) {
 }
 
 //"Someone's being attacked", message
-function attackAlert(attacker, attacked) {
-    startShowingIt('.messages');
-    $('.messages').text(attacker + " is attacking " + attacked);
-}
+// function attackAlert(attacker, attacked) {
+//     startShowingIt('.messages');
+//     $('.messages').text(attacker + " is attacking " + attacked);
+// }
 
 //put the good guy into the dom
 function showGoodGuy() {
@@ -177,8 +177,15 @@ function gameover(name) {
     $('.gameover').prepend(gameoverMessage);
 }
 
-function messages(msg) {
+//message board
+function messages(attacker, attacked, healthResult) {
+	whoseTurn = ("It's "+attacker+"'s turn.");
+	playerAction = (attacker + " is attacking " + attacked);
+	turnResult = (attacked+"'s new health is "+healthResult);
 
+	reusableTemplate('templates-whose-turn', '.msg-div', whoseTurn);
+	reusableTemplate('templates-turn-action', '.msg-div', playerAction);
+	reusableTemplate('templates-turn-result', '.msg-div', turnResult);
 }
 
 
@@ -327,5 +334,6 @@ gameSetup();
 
 
 
+// });
 
 //

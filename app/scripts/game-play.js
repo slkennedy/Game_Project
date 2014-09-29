@@ -36,6 +36,7 @@ function gamePlay(countComp, countHuman) {
                 showBadGuy();
                 startShowingIt('.show-character');
                 startShowingIt('.attack');
+                startShowingIt('.messages');
                 console.log(h);
                 h = h - 1;
                 console.log(h);

@@ -158,23 +158,23 @@ var characters = [{
     name: 'Kirk',
     health: 100,
     evil: false,
-    img: "../images/James-T-Kirk.jpg"
+    img: "images/James-T-Kirk.jpg"
 }, {
     name: 'Spock',
     health: 100,
     evil: false,
-    img: "../images/spock.jpg"
+    img: "images/spock.jpg"
 
 }, {
     name: 'Klingon',
     health: 100,
     evil: true,
-    img: "../images/klingon.jpg"
+    img: "images/klingon.jpg"
 }, {
     name: 'Khan',
     health: 100,
     evil: true,
-    img: "../images/khan.jpg"
+    img: "images/khan.jpg"
 }];
 var goodCharacters = _.filter(characters, function(character) {
     return character.evil === false;

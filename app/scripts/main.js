@@ -1,30 +1,25 @@
 //=============================================================================
-//Global Variables
+                          //Global Variables
 //=============================================================================
 // (function (){
 // 	'use strict';
 
 var characters = [{
-    name: 'Kirk',
-    health: 100,
+    name: 'sara',
+    health: 20,
     evil: false,
-    img: "../images/James-T-Kirk.jpg"
 }, {
-    name: 'Spock',
-    health: 100,
-    evil: false,
-    img: "../images/spock.jpg"
-
+    name: 'jess',
+    health: 20,
+    evil: false
 }, {
-    name: 'Klingon',
-    health: 100,
-    evil: true,
-    img: "../images/klingon.jpg"
+    name: 'ollie-berry',
+    health: 20,
+    evil: true
 }, {
-    name: 'Khan',
-    health: 100,
-    evil: true,
-    img: "../images/khan.jpg"
+    name: 'Jake-y-Poo',
+    health: 20,
+    evil: true
 }];
 var goodCharacters = _.filter(characters, function(character) {
     return character.evil === false;
@@ -40,35 +35,37 @@ var playerAction;
 var turnResult;
 
 //=============================================================================
-//User-Caused Events
+                          //User-Caused Events
 //=============================================================================
 
-//Reacts to click of the attack button
-$('.attack').on('click', function(e) {
-    e.preventDefault();
-    startShowingIt('.messages');
-    stopShowingIt('.attack');
-    goodGuy.attack(badGuy);
-    messages(goodGuy.name, badGuy.name, badGuy.health);
-    if (badGuy.health > 0) {
-        updateLifeStatus(badGuy);
-        badGuy.attack(goodGuy);
-        messages(badGuy.name, goodGuy.name, goodGuy.health);
-        if (goodGuy.health > 0) {
-            updateLifeStatus(goodGuy);
-            startShowingIt('.attack');
-        } else {
-            goodGuy.alive = false;
-            gameover();
-        }
-    } else {
-        badGuy.alive = false;
-        gameover();
-    }
-});
+  //Reacts to click of the attack button
+  $('.attack').on('click', function(e) {
+      e.preventDefault();
+      startShowingIt('.messages');
+      stopShowingIt('.attack');
+      goodGuy.attack(badGuy);
+      messages(goodGuy.name, badGuy.name, badGuy.health);
+      if (badGuy.health > 0) {
+          updateLifeStatus(badGuy);
+          badGuy.attack(goodGuy);
+     			messages(badGuy.name, goodGuy.name, goodGuy.health);
+              if (goodGuy.health > 0) {
+                  updateLifeStatus(goodGuy);
+                  startShowingIt('.attack');
+              }
+              else {
+                  goodGuy.alive = false;
+                  gameover();
+              }
+      }
+      else {
+          badGuy.alive = false;
+          gameover();
+      }
+  });
 
 //=============================================================================
-//Character constructors
+                        //Character constructors
 //=============================================================================
 
 function Character(characterSelection) {
@@ -76,7 +73,6 @@ function Character(characterSelection) {
     this.name = (characterModel.name) ? characterModel.name : 'No Name';
     this.health = (characterModel.health) ? characterModel.health : 100;
     this.evil = (characterModel.evil) ? characterModel.evil : true;
-    this.img = characterModel.img;
     this.alive = true;
     this.poisoned = false;
 }
@@ -89,23 +85,23 @@ Character.prototype.attack = function(attacked) {
 };
 
 Character.prototype.poison = function(poisoned) {
-    this.poisoned = true;
+	this.poisoned = true;
 };
 
 Character.prototype.antidote = function(antidote) {
-    this.poisoned = false;
+	this.poisoned = false;
 };
 
 //create an extension of characters that makes a super evil badguy
 function SuperBadGuy(characterSelection) {
     Character.apply(this, arguments);
-    this.health = 150;
+    this.health = 500;
 }
 
 SuperBadGuy.prototype = Object.create(Character.prototype);
 
 //=============================================================================
-//Update the DOM
+                        //Update the DOM
 //=============================================================================
 
 //Add each character to the dropdown menu at player selection, filtered to show
@@ -129,11 +125,8 @@ function you(yourCharacter) {
 function updateLifeStatus(character) {
     $('#health-number-' + character.name).empty();
     $('#health-number-' + character.name).append(character.health);
+}
 
-    $('.health-' + character.name).animate({
-        'width': (2 * character.health) + 'px'
-    }, 'ease');
-};
 
 //put the good guy into the dom
 function showGoodGuy() {
@@ -151,35 +144,33 @@ function gameover(name) {
     stopShowingIt('.show-character');
     startShowingIt('.gameover');
     var gameoverMessage = function() {
-        var message;
-        var yourCharacter = getYou();
-        if (yourCharacter.alive === true) {
-            message = "Gameover, you win!";
-        } else {
-            message = "Gameover, you lose!";
-        }
-        return message;
+      var message;
+      var yourCharacter = getYou();
+      if (yourCharacter.alive === true) {
+        message = "Gameover, you win!";
+      }
+      else{
+        message = "Gameover, you lose!";
+      }
+      return message;
     };
     $('.gameover').prepend(gameoverMessage);
 }
 
 //message board
 function messages(attacker, attacked, healthResult) {
-    whoseTurn = ("It's " + attacker + "'s turn.");
-    playerAction = (attacker + " is attacking " + attacked);
-    turnResult = (attacked + "'s new health is " + healthResult);
+	whoseTurn = ("It's "+attacker+"'s turn.");
+	playerAction = (attacker + " is attacking " + attacked);
+	turnResult = (attacked+"'s new health is "+healthResult);
 
-    reusableTemplate('templates-whose-turn', '.msg-div', whoseTurn);
-    reusableTemplate('templates-turn-action', '.msg-div', playerAction);
-    reusableTemplate('templates-turn-result', '.msg-div', turnResult);
-
-    var msgHeight = $('.messages').prop('scrollHeight');
-    $('.messages').scrollTop(msgHeight);
+	reusableTemplate('templates-whose-turn', '.msg-div', whoseTurn);
+	reusableTemplate('templates-turn-action', '.msg-div', playerAction);
+	reusableTemplate('templates-turn-result', '.msg-div', turnResult);
 }
 
 
 //=============================================================================
-//GamePlay functions
+                        //GamePlay functions
 //=============================================================================
 
 //taking user choice of charcter and auto-generating bad guy
@@ -208,7 +199,7 @@ function autoGeneratePlayer() {
 
 
 //=============================================================================
-//General Functions
+                        //General Functions
 //=============================================================================
 
 function reusableTemplate(templateId, container, model) {

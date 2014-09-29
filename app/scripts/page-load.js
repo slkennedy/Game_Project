@@ -5,6 +5,7 @@
 function gameSetup() {
     //display the page-load div that asks the user how many human and computer
     //players there are.
+    stopShowingIt('.messages');
     startShowingIt('.page-load');
     $('#numberOfPlayers').on('click', function() {
         //this is currently unused but hopefully will allow for multiple game

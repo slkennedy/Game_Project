@@ -58,6 +58,7 @@
             </div>
             <aside class="messages">
                 <h2 class="msg-board">Message Board</h2>
+                <div class="msg-div"></div>
             </aside>
         </div>
         </div><!-- container -->
@@ -73,12 +74,16 @@
         <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
         </script>
 
-        <script type="text/template" id="templates-turn-message">
-            <h1><%=player turn%></h1>
+        <script type="text/template" id="templates-whose-turn">
+            <p><%=whoseTurn%></p>
         </script>
 
-        <script type="text/template" id="templates-turn-results">
-            <h1><%=player action%><%=action result%></h1>
+        <script type="text/template" id="templates-turn-action">
+            <p><%=playerAction%></p>
+        </script>
+
+        <script type="text/template" id="templates-turn-result">
+            <p><%=turnResult%></p>
         </script>
 
         <!-- build:js scripts/vendor.js -->

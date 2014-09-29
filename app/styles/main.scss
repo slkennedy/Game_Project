@@ -26,7 +26,7 @@ body {
 	background-image: url('http://i371.photobucket.com/albums/oo160/krrish_xhaun/stars.gif');
 	background-repeat: repeat;
 	width: 100%;
-	height: 2000px;
+	height: 800px;
 }
 
 .hidden {
@@ -53,23 +53,39 @@ body {
 	@include span-columns(2);
 	@include omega();
 	height: 390px;
-	position:absolute;
-	right: 126px;
+	position:fixed;
+	right: 10%;
 	top: 32px;
 	background: #fff;
 	z-index: 10;
-	@include border-radius(5px);
+	@include border-radius(2px);
 	text-align: center;
-	font-size: 2em;
-	text-transform: uppercase;
+	font-size: 1em;
+	overflow: scroll;
 
 	h2 {
-		font-size: .75em;
-		color: HSLA(70, 8%, 15%, 1);
-		margin-top: 7px;
+		background: #c8c8c8;
+		margin-top:0;
+	}
+
+	.msg-div{	
+		height: 370px;
+
+		p {
+			font-size: 1em;
+			color: HSLA(70, 8%, 15%, 1);
+			margin-top: 7px;
+
+			&:nth-of-type(even){
+				background:#c8c8c8;
+			}
+
+			&:nth-of-type(odd) {
+				background: #fff;
+			}
+		}
 	}
 }
-
 .page-load {
 	position: absolute;
 	width: 80%;
@@ -234,4 +250,31 @@ body {
 		    margin-top: 10px;
 		}
 	}
+
 }
+
+//Media Queries
+@media (max-width: 695px) {
+	.messages,
+	.show-character,
+	.gameover{
+		font-size: 1.5em;
+	}
+}
+
+@media (max-width: 500px) {
+	.messages,
+	.show-character,
+	.gameover {
+		font-size: 1em;
+	}
+}
+
+@media (max-width: 300px) {
+	.messages,
+	.show-character,
+	.gameover {
+		font-size: .5em;
+	}
+}
+

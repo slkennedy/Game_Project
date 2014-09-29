@@ -21,7 +21,7 @@ function gameSetup() {
         //make sure the player chooses at least 2 characters, display error
         //on screen if not and do not proceed
         if (numberOfPlayers < 2 || isNaN(numberOfPlayers)) {
-            $('.page-load').append("Please select at least 2 players");
+            $('.page-load').append("<p>Please select at least 2 players</p>");
         }
 
         //the user has successfully submitted at least 2 characters and may

@@ -55,27 +55,25 @@ var turnResult;
       e.preventDefault();
       startShowingIt('.messages');
       stopShowingIt('.attack');
-        messages(goodGuy.name, badGuy.name);
-          goodGuy.attack(badGuy);
-          healthResult = badGuy.health;
-          messages(healthResult);
-          if (badGuy.health > 0) {
-              updateLifeStatus(badGuy);
-                messages(badGuy.name, goodGuy.name);
-                  badGuy.attack(goodGuy);
-                  healthResult = goodGuy.health;
-         			messages(healthResult);
-                  if (goodGuy.health > 0) {
-                      updateLifeStatus(goodGuy);
-                        startShowingIt('.attack');
-                  } else {
-                      goodGuy.alive = false;
-                      gameover();
-                  }
-          } else {
-              badGuy.alive = false;
-              gameover();
-          }
+      goodGuy.attack(badGuy);
+      messages(goodGuy.name, badGuy.name, badGuy.health);
+      if (badGuy.health > 0) {
+          updateLifeStatus(badGuy);
+          badGuy.attack(goodGuy);
+     			messages(badGuy.name, goodGuy.name, goodGuy.health);
+              if (goodGuy.health > 0) {
+                  updateLifeStatus(goodGuy);
+                  startShowingIt('.attack');
+              }
+              else {
+                  goodGuy.alive = false;
+                  gameover();
+              }
+      }
+      else {
+          badGuy.alive = false;
+          gameover();
+      }
   });
 
 //=============================================================================
@@ -95,7 +93,6 @@ function Character(characterSelection) {
 Character.prototype.attack = function(attacked) {
     var attacker = this.name;
     attacked.health = attacked.health - _.random(1, 10);
-    var healthResult = attacked.health;
 
 };
 

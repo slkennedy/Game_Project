@@ -236,6 +236,12 @@ body {
 		margin-bottom: 50px;
 		@include border-radius(5px);
 		
+		.nav {
+			background-image: "../images/nav_panel.png";
+			width: em(100px);
+			height: 100px;
+		}
+
 		.attack {
 			-webkit-appearance: none;
 		    -moz-appearance: none;

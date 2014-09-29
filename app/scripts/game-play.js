@@ -20,26 +20,30 @@ function gamePlay(countComp, countHuman) {
                 e.preventDefault();
                 startShowingIt('.dropdown');
                 listAvailableCharacters(true);
+                $('#pick-character p').remove();
             });
             $('#imGood').on('click', function(e) {
                 e.preventDefault();
                 startShowingIt('.dropdown');
                 listAvailableCharacters(false);
+                $('#pick-character p').remove();
             });
             //when the player clicks on the submit for this form
             $('#pick-character').on('submit', function(e) {
                 e.preventDefault();
-                you($('.dropdown').val());
-                assignCharacters();
-                showGoodGuy();
-                stopShowingIt('#pick-character');
-                showBadGuy();
-                startShowingIt('.show-character');
-                startShowingIt('.attack');
-                startShowingIt('.messages');
-                console.log(h);
-                h = h - 1;
-                console.log(h);
+                if (!$('.dropdown').val()) {
+                    $('#pick-character').append("<p>please choose good or evil</p>");
+                }
+                else {
+                    you($('.dropdown').val());
+                    assignCharacters();
+                    showGoodGuy();
+                    stopShowingIt('#pick-character');
+                    showBadGuy();
+                    startShowingIt('.show-character');
+                    startShowingIt('.attack');
+                    startShowingIt('.messages');
+                }
             });
         }
         //after all the humans are created

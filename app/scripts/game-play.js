@@ -33,8 +33,7 @@ function gamePlay(countComp, countHuman) {
                 e.preventDefault();
                 if (!$('.dropdown').val()) {
                     $('#pick-character').append("<p>please choose good or evil</p>");
-                }
-                else {
+                } else {
                     you($('.dropdown').val());
                     assignCharacters();
                     showGoodGuy();
@@ -50,24 +49,24 @@ function gamePlay(countComp, countHuman) {
         else {
 
         }
-            // listAvailableCharacters(false);
-            // $('#create-player').on('click', function() {
-            //     //if the player should be a computer, autogenerate the character
-            //     if ($('.choose-player .computer :checked')) {
-            //         //autogen needs updating but creates a character at random
-            //         //right now it only creates an evil character. needs to be
-            //         //able to create evil or not evil based on passed arg.
-            //         autoGeneratePlayer();
-            //     }
-            //     //if it should be a human,
-            //     else {
-            //         //assignCharacter function needs updating but gets the
-            //         //character name from the dropdown box, and adds a player
-            //         //to activePlayers list based on it. needs to have the index
-            //         //added to it
-            //         assignCharacter();
-            //     }
-            // });
+        // listAvailableCharacters(false);
+        // $('#create-player').on('click', function() {
+        //     //if the player should be a computer, autogenerate the character
+        //     if ($('.choose-player .computer :checked')) {
+        //         //autogen needs updating but creates a character at random
+        //         //right now it only creates an evil character. needs to be
+        //         //able to create evil or not evil based on passed arg.
+        //         autoGeneratePlayer();
+        //     }
+        //     //if it should be a human,
+        //     else {
+        //         //assignCharacter function needs updating but gets the
+        //         //character name from the dropdown box, and adds a player
+        //         //to activePlayers list based on it. needs to have the index
+        //         //added to it
+        //         assignCharacter();
+        //     }
+        // });
     }
 
 
@@ -78,8 +77,7 @@ function gamePlay(countComp, countHuman) {
     function takeTurns() {
         if (!gameover) {
             _.each(activePlayers, playerTurn);
-        }
-        else {
+        } else {
             gameover();
         }
     }

@@ -18,87 +18,86 @@
         <script src="../bower_components/modernizr/modernizr.js"></script>
         <!-- endbuild -->
     </head>
-
     <body>
         <div class="container">
-        <div class="background-image">
-            <section class="page-load hidden">
-                <h1>How many players are in this game?</h1>
-                <div class="human-num">
-                    <h2>Humans</h2>
-                    <input type="text" value="1"/>
+            <div class="background-image">
+                <section class="page-load hidden">
+                    <h1>How many players are in this game?</h1>
+                    <div class="human-num">
+                        <h2>Humans</h2>
+                        <input type="text" value="1"/>
+                    </div>
+                    <div class="computer-num">
+                        <h2>Automated</h2>
+                        <input type="text" value="1" />
+                    </div>
+                    <input type="submit" id="numberOfPlayers">
+                    </section><!--page-load-->
+                    <section class="choose-character hidden">
+                        <form id="pick-character" method="post" class="pick-characters">
+                            <h1>Pick Your Character:</h1>
+                            <h2>Are you good or evil?</h2>
+                            <a href="#" id='imGood'>Good</a>
+                            <a href="#" id='imEvil'>Evil</a>
+                        <select class="dropdown"></select>
+                        <input type="submit" value="I like this one!" id="button"/>
+                    </form>
+                    </section><!--choose-character-->
+                    <div class="show-character hidden">
+                        <div id="good-guy" class="good-character">
+                        </div>
+                        <div id="bad-guy" class="bad-character">
+                        </div>
+                        <div class="info-bar">
+                            <div class="nav1"></div>
+                            <div class="nav2"></div>
+                            <div class="nav3"></div>
+                            <button class="attack hidden">ATTACK!</button>
+                        </div>
+                    </div>
+                    <div class="gameover hidden">
+                        <a href="/index.html" id="play-again">Play Again</a>
+                    </div>
+                    <aside class="messages">
+                        <h2 class="msg-board">Captain's Log</h2>
+                        <div class="msg-div"></div>
+                    </aside>
                 </div>
-                <div class="computer-num">
-                    <h2>Automated</h2>
-                    <input type="text" value="1" />
+                </div><!-- container -->
+                <script type="text/template" id="templates-character-list">
+                <option value= "<%= name %>">Name: <%= name %>,
+                    Health: <%= health %>
+                </option>
+                </script>
+                <script type="text/template" id="templates-display-character">
+                <div class="image-holder">
+                    <img class="character-image" src = "<%= img %>" />
                 </div>
-                <input type="submit" id="numberOfPlayers">
-            </section><!--page-load-->
-            <section class="choose-character hidden">
-            <form id="pick-character" method="post" class="pick-characters">
-                <h1>Pick Your Character:</h1>
-                <h2>Are you good or evil?</h2>
-                <a href="#" id='imGood'>Good</a>
-                <a href="#" id='imEvil'>Evil</a>
-                <select class="dropdown"></select>
-                <input type="submit" value="I like this one!" id="button"/>
-            </form>
-          </section><!--choose-character-->
-            <div class="show-character hidden">
-                <div id="good-guy" class="good-character">
-                </div>
-                <div id="bad-guy" class="bad-character">
-                </div>
-                <div class="info-bar">
-                    <div class="Nav"></div>
-                    <button class="attack hidden">ATTACK!</button>
-                </div>
-            </div>
-            <div class="gameover hidden">
-                <a href="/index.html" id="play-again">Play Again</a>
-            </div>
-            <aside class="messages">
-                <h2 class="msg-board">Captain's Log</h2>
-                <div class="msg-div"></div>
-            </aside>
-        </div>
-        </div><!-- container -->
-
-        <script type="text/template" id="templates-character-list">
-        <option value= "<%= name %>">Name: <%= name %>,
-            Health: <%= health %>
-        </option>
-        </script>
-
-        <script type="text/template" id="templates-display-character">
-        <h1><%= name %></h1>
-        <span>Health: </span><span id="health-number-<%=name%>"><%= health %></span>
-        </script>
-
-        <script type="text/template" id="templates-whose-turn">
-            <p><%=whoseTurn%></p>
-        </script>
-
-        <script type="text/template" id="templates-turn-action">
-            <p><%=playerAction%></p>
-        </script>
-
-        <script type="text/template" id="templates-turn-result">
-            <p><%=turnResult%></p>
-        </script>
-
-        <!-- build:js scripts/vendor.js -->
-        <!-- bower:js -->
-        <script src="../bower_components/jquery/dist/jquery.js"></script>
-        <script src="../bower_components/underscore/underscore.js"></script>
-        <!-- endbower -->
-        <!-- endbuild -->
-
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/player-turn.js"></script>
-        <script src="scripts/game-play.js"></script>
-        <script src="scripts/page-load.js"></script>
-        <script src="scripts/main.js"></script>
-        <!-- endbuild -->
-    </body>
-</html>
+                <h1><%= name %></h1>
+                <div class="health-<%=name%> health-bar"></div>
+                <span>Health: </span>
+                <span id="health-number-<%=name%>"><%= health %></span>
+                </script>
+                <script type="text/template" id="templates-whose-turn">
+                <p><%=whoseTurn%></p>
+                </script>
+                <script type="text/template" id="templates-turn-action">
+                <p><%=playerAction%></p>
+                </script>
+                <script type="text/template" id="templates-turn-result">
+                <p><%=turnResult%></p>
+                </script>
+                <!-- build:js scripts/vendor.js -->
+                <!-- bower:js -->
+                <script src="../bower_components/jquery/dist/jquery.js"></script>
+                <script src="../bower_components/underscore/underscore.js"></script>
+                <!-- endbower -->
+                <!-- endbuild -->
+                <!-- build:js scripts/main.js -->
+                <script src="scripts/player-turn.js"></script>
+                <script src="scripts/game-play.js"></script>
+                <script src="scripts/page-load.js"></script>
+                <script src="scripts/main.js"></script>
+                <!-- endbuild -->
+            </body>
+        </html>

@@ -38,18 +38,6 @@ var turnResult;
                           //User-Caused Events
 //=============================================================================
 
-  //Reacts to form submission by creating a new instance of Character
-  // $("#pick-character").on('submit', function(event) {
-  //     event.preventDefault();
-  //     you($('.dropdown').val());
-  //     assignCharacters();
-  //     showGoodGuy();
-  //     stopShowingIt('#pick-character');
-  //     showBadGuy();
-  //     startShowingIt('.show-character');
-  //     startShowingIt('.attack');
-  // });
-
   //Reacts to click of the attack button
   $('.attack').on('click', function(e) {
       e.preventDefault();
@@ -139,11 +127,6 @@ function updateLifeStatus(character) {
     $('#health-number-' + character.name).append(character.health);
 }
 
-//"Someone's being attacked", message
-// function attackAlert(attacker, attacked) {
-//     startShowingIt('.messages');
-//     $('.messages').text(attacker + " is attacking " + attacked);
-// }
 
 //put the good guy into the dom
 function showGoodGuy() {
@@ -213,82 +196,6 @@ function autoGeneratePlayer() {
     }
     activePlayers.push(badGuy);
 }
-
-
-
-//
-//
-// our confusing attempt at understanding deferred
-// function event() {
-//   var defer = new $.Deferred();
-//
-//   // Pending when bad guy is still alive
-//   if (badGuy.health > 0) {
-//     defer.notify( function() {
-//       goodGuy.attack(badGuy);
-//     });
-//   }
-//
-//   // Reject when bad guy is dead
-//   else {
-//     defer.reject( function() {
-//       gameover();
-//     });
-//   });
-//
-// // while the defer is pending do this stuff:
-// setTimeout(function working() {
-//   if ( dfd.state() === "pending" ) {
-//     defer.notify( "working... " );
-//     setInterval( working, 500 );
-//   }
-// }, 1 );
-//
-//   // Return the Promise so caller can't change the Deferred
-//   return defer.promise();
-// }
-//
-// // Attach resolve, fail, and progress handlers for event
-// $.when( event() ).then(
-//   function(){
-//     updateLifeStatus(badGuy);
-//   },
-//   function() {
-//     gameover();
-//   },
-//   function() {
-//     goodGuy.attack(badGuy);
-//   }
-// );
-
-
-
-// This version of clicking attack button is our first attempt at having time offset stuff
-// $('.attack').on('click', function(e) {
-//   e.preventDefault();
-//   stopShowingIt('.attack');
-//   setTimeout(function() {
-//     attackAlert(goodGuy.name, badGuy.name);
-//     setTimeout(function() {
-//       goodGuy.attack(badGuy);
-//       updateLifeStatus(badGuy);
-//     }, 500);
-//   }, 500)
-//   .done(function() {
-//     if (badGuy.health > 0) {
-//       setTimeout(function() {
-//         attackAlert(badGuy.name, goodGuy.name);
-//         setTimeout(function() {
-//           badGuy.attack(goodGuy);
-//           updateLifeStatus(goodGuy);
-//         }, 500);
-//       }, 500)
-//       .done(function() {
-//         startShowingIt('.attack');
-//       });
-//     }
-//   });
-// });
 
 
 //=============================================================================
